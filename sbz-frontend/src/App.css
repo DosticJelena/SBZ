@@ -1,0 +1,107 @@
+.App {
+  background: url(./assets/wood.jpg);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position: left top;
+  min-height: 100vh;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.App header {
+  padding-top: 10vh;
+}
+
+.orange-title {
+  background-color: rgb(86,39,59,0.7);
+  color: white;
+  padding: 5%;
+  width: 50%;
+  margin-right: auto;
+}
+
+.orange-title img, .orange-title h1 {
+  display: inline-block;
+  margin: auto;
+}
+
+.orange-title h1 {
+  font-family: 'Anton', sans-serif;
+  margin-right: 20px;
+}
+
+menu {
+  margin-top: 10vh;
+  background-color: rgb(222, 184, 135, 0.5);
+  min-height: 26vh;
+  padding: 0;
+  padding-top: 3vh;
+}
+
+.menu-content {
+  min-height: 20vh;
+  width:100%;
+  background-color: rgb(222, 184, 135);
+  padding: 60px;
+}
+
+.menu-content a {
+  color: green;
+}
+
+.menu-content a:hover {
+  text-decoration: none;
+}
+
+/* ----- */
+
+.FindRecipe nav, .PersonalProfile nav{
+  background-color: rgb(86,39,59,0.5);
+  min-height: 13vh;
+  padding-top: 3vh;
+  padding-left: 20px;
+  color: rgb(222, 184, 135);
+}
+
+.FindRecipe nav img, .FindRecipe nav .home-logo, .PersonalProfile nav img, .PersonalProfile nav .home-logo {
+  display: inline-block;
+}
+
+.home-logo {
+  margin-left: 30px;
+}
+
+.FindRecipe nav h3, .PersonalProfile nav h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.FindRecipe nav:hover, .PersonalProfile nav:hover{
+  background-color: rgb(86,39,59,0.7);
+}
+
+.filter > div {
+  margin-top: 5vh;
+  margin-right: 3%;
+  width: 30%;
+  padding: 30px;
+  display: inline-block;
+}
+
+.filter > div h4 {
+  font-family: 'Anton', sans-serif;
+}
+
+.step-1 {
+  min-height: 70vh;
+  background-color: rgb(222, 184, 135, 0.5);
+}
+
+.step-2 {
+  min-height: 70vh;
+  background-color: rgb(222, 184, 135, 0.5);
+}
+
+.step-3 {
+  min-height: 40vh;
+  background-color: rgb(222, 184, 135, 0.5);
+}
+
