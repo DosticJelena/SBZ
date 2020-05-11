@@ -1,0 +1,5 @@
+backend\SbzApp.class
+backend\controller\TestController.class
+backend\service\serviceInterface\TestService.class
+backend\model\TestModel.class
+backend\service\TestServiceImpl.class

@@ -1,7 +1,7 @@
-package service;
+package backend.service;
 
 import org.springframework.stereotype.Service;
-import service.serviceInterface.TestService;
+import backend.service.serviceInterface.TestService;
 
 @Service
 public class TestServiceImpl implements TestService {

@@ -1,9 +1,9 @@
-package controller;
+package backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import service.serviceInterface.TestService;
+import backend.service.serviceInterface.TestService;
 
 @RestController
 public class TestController {

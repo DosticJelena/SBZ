@@ -1,4 +1,4 @@
-package service.serviceInterface;
+package backend.service.serviceInterface;
 
 public interface TestService {
 

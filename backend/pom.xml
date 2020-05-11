@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.java</groupId>
-    <artifactId>sbz-backend</artifactId>
+    <artifactId>backend</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -35,6 +35,8 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-ci</artifactId>
@@ -58,5 +60,14 @@
             </exclusions>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
