@@ -8,16 +8,20 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="recipe_id", nullable = false, unique = true)
+    @Column(name="id", nullable = false, unique = true)
     private long id;
 
     @Column(nullable=false, unique = true)
     private String name;
 
-    @Column
+    @ManyToMany(mappedBy = "recipes")
     private Set<Ingredient> ingredients;
 
-    @Column
+    @ManyToMany(mappedBy = "userRecipes")
+    private Set<UserModel> users;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
 
     public Recipe() {

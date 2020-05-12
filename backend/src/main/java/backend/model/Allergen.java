@@ -1,7 +1,7 @@
 package backend.model;
 
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Allergen {
@@ -12,6 +12,9 @@ public class Allergen {
 
     @Column
     private String name;
+
+    @ManyToMany(mappedBy = "userAllergens")
+    private Set<UserModel> users;
 
     public Allergen() {
     }

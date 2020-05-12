@@ -7,7 +7,7 @@ public class Macronutrients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="macros_id", nullable = false, unique = true)
+    @Column(name="id", nullable = false, unique = true)
     private long id;
 
     @Column
@@ -22,7 +22,7 @@ public class Macronutrients {
     @Column
     private double calories;
 
-    @Column
+    @OneToOne(mappedBy = "macros")
     private Recipe recipe;
 
     public Macronutrients() {
