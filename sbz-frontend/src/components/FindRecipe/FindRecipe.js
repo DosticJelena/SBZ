@@ -15,8 +15,14 @@ class FindRecipe extends React.Component {
     }
 
     chooseIngredient = (e) => {
-        console.log(e.target.value);
-        this.setState({choosenIngredients: [...this.state.choosenIngredients, e.target.value]})
+        let tempList = [...this.state.choosenIngredients];
+        var index = tempList.indexOf(e.target.value);
+        if (index !== -1) {
+            tempList.splice(index, 1);
+            this.setState({ choosenIngredients: tempList });
+        } else {
+            this.setState({ choosenIngredients: [...this.state.choosenIngredients, e.target.value] });
+        }
     }
 
     componentDidMount() {
@@ -60,7 +66,7 @@ class FindRecipe extends React.Component {
                         <hr />
                         <h5>Choosen ingredients:</h5>
                         <div className="choosen-ingredients">
-                                {this.state.choosenIngredients.map((ing) => <h6 key={ing}>- {ing}</h6>)}
+                            {this.state.choosenIngredients.map((ing) => <h6 key={ing}>- {ing}</h6>)}
                         </div>
                     </div>
                     <div className="step-2 col-md-4 col-12">
