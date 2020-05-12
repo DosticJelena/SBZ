@@ -1,9 +1,18 @@
 package backend.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Allergen {
 
     @Id
@@ -16,27 +25,4 @@ public class Allergen {
     @ManyToMany(mappedBy = "userAllergens")
     private Set<UserModel> users;
 
-    public Allergen() {
-    }
-
-    public Allergen(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
