@@ -1,4 +1,4 @@
-package model;
+package backend.model;
 
 
 import javax.persistence.*;
@@ -27,11 +27,4 @@ public class Ingredient {
         this.id = id;
     }
 
-    public String getTestField() {
-        return testField;
-    }
-
-    public void setTestField(String testField) {
-        this.testField = testField;
-    }
 }
