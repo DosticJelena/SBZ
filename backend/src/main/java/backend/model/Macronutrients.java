@@ -1,13 +1,44 @@
 package backend.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class Macronutrients {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="macros_id", nullable = false, unique = true)
+    private long id;
+
+    @Column
     private double protein;
+
+    @Column
     private double carbs;
+
+    @Column
     private double fat;
+
+    @Column
     private double calories;
 
+    @Column
+    private Recipe recipe;
+
     public Macronutrients() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getProtein() {
@@ -40,6 +71,14 @@ public class Macronutrients {
 
     public void setCalories(double calories) {
         this.calories = calories;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     @Override

@@ -1,12 +1,38 @@
 package backend.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class Recipe {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="recipe_id", nullable = false, unique = true)
+    private long id;
+
+    @Column(nullable=false, unique = true)
     private String name;
+
+    @Column
     private Set<Ingredient> ingredients;
+
+    @Column(nullable = false)
     private Macronutrients macros;
 
     public Recipe() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
