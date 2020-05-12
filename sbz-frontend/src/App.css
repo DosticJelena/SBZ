@@ -54,6 +54,10 @@ menu {
 
 /* ----- */
 
+.row {
+  margin:0;
+}
+
 .FindRecipe nav, .PersonalProfile nav{
   background-color: rgb(86,39,59,0.7);
   min-height: 13vh;
@@ -70,6 +74,14 @@ menu {
   margin-left: 30px;
 }
 
+.home-logo a {
+  color: rgb(222, 184, 135);
+}
+
+.home-logo a:hover {
+  text-decoration: none;
+}
+
 .FindRecipe nav h3, .PersonalProfile nav h3 {
   font-family: 'Anton', sans-serif;
 }
@@ -83,10 +95,10 @@ menu {
 }
 
 .filter > div:hover {
-  background-color: rgb(222, 184, 135, 0.7);
+  background-color: rgb(222, 184, 135, 0.6);
 }
 
-.filter > div h4 {
+.filter > div h4, .filter > div h5 {
   font-family: 'Anton', sans-serif;
 }
 
@@ -101,7 +113,42 @@ menu {
 }
 
 .step-3 {
-  min-height: 40vh;
+  min-height: 70vh;
   background-color: rgb(222, 184, 135, 0.5);
+}
+
+.ing-dropdown {
+  background-color: rgb(86,39,59,0.7);
+  border: 1px rgb(86,39,59) solid;
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+}
+
+.show>.btn-secondary.dropdown-toggle:focus {
+  box-shadow: rgb(86,39,59);
+}
+
+.show>.btn-secondary.dropdown-toggle {
+  background-color: rgb(86,39,59);
+  border-color: rgb(86,39,59);
+}
+
+.dropdown-menu.show {
+  border-radius: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+.ing-dropdown:hover, .ing-dropdown:focus, .ing-dropdown:after {
+  background-color: rgb(86,39,59,0.8);
+  border: 1px rgb(86,39,59) solid;
+}
+
+.choosen-ingredients {
+  min-height: 40vh;
+  background-color: rgb(222, 184, 135, 0.6);
+  border: 1px solid rgb(222, 184, 135);
+  padding: 20px;
 }
 
