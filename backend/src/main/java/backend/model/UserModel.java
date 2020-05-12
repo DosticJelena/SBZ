@@ -55,5 +55,5 @@ public class UserModel {
             joinColumns = @JoinColumn(name = "allergen_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<Allergen> userAllergens;
-    
+
 }
