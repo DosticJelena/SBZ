@@ -2,13 +2,14 @@ package backend.model;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "user_id", nullable=false, unique=true)
+    @Column(name= "id", nullable=false, unique=true)
     private long id;
 
     @Column(nullable=false, unique = true)
@@ -23,24 +24,34 @@ public class User {
     @Column(nullable=false)
     private String lastName;
 
-    @Column(nullable=true)
+    @Column
     private double weight;
 
-    @Column(nullable=true)
+    @Column
     private double height;
 
-    @Column(nullable=true)
+    @Column
     private String gender;
 
-    //Recepti
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_user",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<Recipe> userRecipes;
 
-    //Alergeni
+    @ManyToMany
+    @JoinTable(
+            name = "allergen_user",
+            joinColumns = @JoinColumn(name = "allergen_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<Allergen> userAllergens;
 
 
-    public User() {
+    public UserModel() {
     }
 
-    public User(long id, String username, String password, String firstName, String lastName, double weight, double height, String gender) {
+    public UserModel(long id, String username, String password, String firstName, String lastName, double weight, double height, String gender) {
         this.id = id;
         Username = username;
         this.password = password;

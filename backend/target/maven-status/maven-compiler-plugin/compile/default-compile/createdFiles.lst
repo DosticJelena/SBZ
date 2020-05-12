@@ -1,10 +1,10 @@
 backend\model\Recipe.class
 backend\service\LocationServiceImpl.class
-backend\model\User.class
 backend\SbzApp.class
 backend\controller\TestController.class
 backend\service\serviceInterface\TestService.class
 backend\model\Location.class
+backend\model\UserModel.class
 backend\service\serviceInterface\LocationService.class
 backend\service\TestServiceImpl.class
 backend\model\Macronutrients.class
