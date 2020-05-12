@@ -1,11 +1,6 @@
 package backend.model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -22,7 +17,7 @@ public class Recipe {
     @Column
     private Set<Ingredient> ingredients;
 
-    @Column(nullable = false)
+    @Column
     private Macronutrients macros;
 
     public Recipe() {
