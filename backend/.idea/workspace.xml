@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64803adb-6288-4496-b63d-7a81f3d666d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SbzApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/SbzApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/TestModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/TestModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/TestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/service/TestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/serviceInterface/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/service/serviceInterface/TestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="64803adb-6288-4496-b63d-7a81f3d666d1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
