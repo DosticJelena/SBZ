@@ -80,10 +80,14 @@ menu {
 
 .filter > div {
   margin-top: 5vh;
-  margin-right: 3%;
+  border-right: rgb(222, 184, 135) 3px solid;
   width: 30%;
   padding: 30px;
   display: inline-block;
+}
+
+.filter > div:hover {
+  background-color: rgb(222, 184, 135, 0.7);
 }
 
 .filter > div h4 {
