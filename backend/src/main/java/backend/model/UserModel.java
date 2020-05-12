@@ -22,7 +22,7 @@ public class UserModel {
     private long id;
 
     @Column(nullable=false, unique = true)
-    private String Username;
+    private String username;
 
     @Column(nullable=false)
     private String password;
