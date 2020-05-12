@@ -6,5 +6,11 @@ import java.util.List;
 
 public interface IngredientService {
 
-    List<Ingredient> getAll();
+    Ingredient findById(long id);
+    Ingredient findByName(String name);
+    List<Ingredient> findAll();
+
+    Ingredient save(Ingredient ingredient);
+
+    void deleteById(long id);
 }

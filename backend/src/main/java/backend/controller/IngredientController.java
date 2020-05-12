@@ -21,7 +21,7 @@ public class IngredientController {
     private IngredientService ingredientService;
 
     @GetMapping(value="", produces = APPLICATION_JSON_VALUE)
-    public List<Ingredient> getAll(){
-        return ingredientService.getAll();
+    public List<Ingredient> findAll(){
+        return ingredientService.findAll();
     }
 }
