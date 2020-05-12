@@ -55,7 +55,7 @@ menu {
 /* ----- */
 
 .FindRecipe nav, .PersonalProfile nav{
-  background-color: rgb(86,39,59,0.5);
+  background-color: rgb(86,39,59,0.7);
   min-height: 13vh;
   padding-top: 3vh;
   padding-left: 20px;
@@ -74,16 +74,16 @@ menu {
   font-family: 'Anton', sans-serif;
 }
 
-.FindRecipe nav:hover, .PersonalProfile nav:hover{
-  background-color: rgb(86,39,59,0.7);
-}
-
 .filter > div {
   margin-top: 5vh;
-  margin-right: 3%;
+  border-right: rgb(222, 184, 135) 3px solid;
   width: 30%;
   padding: 30px;
   display: inline-block;
+}
+
+.filter > div:hover {
+  background-color: rgb(222, 184, 135, 0.7);
 }
 
 .filter > div h4 {
