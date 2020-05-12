@@ -1,6 +1,5 @@
 package backend.model;
 
-
 import javax.persistence.*;
 import java.util.Set;
 
