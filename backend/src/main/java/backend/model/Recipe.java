@@ -15,6 +15,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class Recipe {
 
+    enum Popularity{
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false, unique = true)
@@ -32,6 +38,19 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
+
+    @Column
+    private long timesEaten;
+
+    @Column
+    private long timesViewed;
+
+    @Column
+    private double rating;
+
+    @Column
+    private Popularity popularity;
+
 
     @Override
     public String toString() {
