@@ -1,0 +1,8 @@
+import backend.model.Ingredient;
+
+rule "Proba"
+    when
+        $i: Ingredient(name == "Egg")
+    then
+        System.out.println("EGG postoji!!!");
+end
