@@ -1,9 +1,12 @@
 package backend.service;
 
+import backend.kie.util.KnowledgeSessionHelper;
 import backend.model.Allergen;
 import backend.model.Ingredient;
 import backend.repository.IngredientRepository;
 import backend.service.serviceInterface.IngredientService;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public List<Ingredient> findAll(){
+        KieContainer kc = KnowledgeSessionHelper.createRuleBase();
+        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "ksession-rules");
+
+        List<Ingredient> list = ingredientRepository.findAll();
+        kSession.insert(list.get(0));
+        kSession.fireAllRules();
+
         return ingredientRepository.findAll();
     }
 
