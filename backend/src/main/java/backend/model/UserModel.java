@@ -44,13 +44,6 @@ public class UserModel {
 
     @ManyToMany
     @JoinTable(
-            name = "recipe_user",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<Recipe> userRecipes;
-
-    @ManyToMany
-    @JoinTable(
             name = "allergen_user",
             joinColumns = @JoinColumn(name = "allergen_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
