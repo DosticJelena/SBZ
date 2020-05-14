@@ -14,6 +14,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Recipe {
+    
+    public enum Popularity{
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +32,22 @@ public class Recipe {
     @ManyToMany(mappedBy = "recipes")
     private Set<Ingredient> ingredients;
 
-    @ManyToMany(mappedBy = "userRecipes")
-    private Set<UserModel> users;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
+
+    @Column
+    private long timesEaten;
+
+    @Column
+    private long timesViewed;
+
+    @Column
+    private double rating;
+
+    @Column
+    private Popularity popularity;
+
 
     @Override
     public String toString() {
