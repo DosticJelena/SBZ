@@ -10,4 +10,4 @@ insert into recipe (name, popularity, rating, times_eaten, times_viewed) values(
 
 insert into ingredient_recipe (ingredient_id, recipe_id) values (1,1);
 
-insert into user_model (first_name, last_name, username, password, calories, height, weight, gender, weight_goal) values ('Test', 'Subject', 'test', 'test', 0, 0, 0, 'test', 1);
+insert into user_model (first_name, last_name, age, username, password, calories_threshold, height, weight, gender, weight_goal) values ('First', 'Last', 23, 'username_test', 'pass_test', 2100, 170, 65, 0, 1);
