@@ -16,6 +16,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserModel {
 
+    enum WeightGoal{
+        LOSE,
+        MAINTAIN,
+        GAIN
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id", nullable=false, unique=true)
@@ -55,5 +61,11 @@ public class UserModel {
             joinColumns = @JoinColumn(name = "allergen_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<Allergen> userAllergens;
+
+    @Column
+    private double calories;
+
+    @Column
+    private WeightGoal weightGoal;
 
 }
