@@ -21,12 +21,6 @@ public class Recipe {
         HIGH
     }
 
-    enum Popularity{
-        LOW,
-        MEDIUM,
-        HIGH
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false, unique = true)
