@@ -5,7 +5,7 @@
         <ksession name="ksession-rules"/>
     </kbase>
 
-    <kbase name="rules" packages="rules">
+    <kbase name="meals" packages="rules">
         <ksession name="meals-rules"/>
     </kbase>
 
