@@ -1,0 +1,22 @@
+import backend.model.Recipe;
+
+rule "Set popularity LOW"
+    when
+        $r: Recipe(timesEaten < 5)
+    then
+        $r.setPopularity(Recipe.Popularity.LOW);
+end
+
+rule "Set popularity MEDIUM"
+    when
+        $r: Recipe((timesEaten >= 5) && (timesEaten < 10))
+    then
+        $r.setPopularity(Recipe.Popularity.MEDIUM);
+end
+
+rule "Set popularity HIGH"
+    when
+        $r: Recipe(timesEaten >= 10)
+    then
+        $r.setPopularity(Recipe.Popularity.HIGH);
+end
