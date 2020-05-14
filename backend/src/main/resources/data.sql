@@ -5,3 +5,9 @@ insert into ingredient (name) values ('Yogurt');
 insert into ingredient (name) values ('Chicken breast');
 insert into ingredient (name) values ('Parmesan');
 insert into ingredient (name) values ('Banana');
+
+insert into recipe (name, popularity, rating, times_eaten, times_viewed) values('Scrambled eggs', 0, 0, 0, 0);
+
+insert into ingredient_recipe (ingredient_id, recipe_id) values (1,1);
+
+insert into user_model (first_name, last_name, username, password, calories, height, weight, gender, weight_goal) values ('Test', 'Subject', 'test', 'test', 0, 0, 0, 'test', 1);

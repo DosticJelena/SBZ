@@ -32,9 +32,6 @@ public class Recipe {
     @ManyToMany(mappedBy = "recipes")
     private Set<Ingredient> ingredients;
 
-    @ManyToMany(mappedBy = "userRecipes")
-    private Set<UserModel> users;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
