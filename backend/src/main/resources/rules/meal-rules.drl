@@ -2,6 +2,8 @@ import backend.model.Meal;
 import backend.model.Recipe;
 import java.sql.Timestamp;
 
+global Long maxTimesEaten;
+
 rule "AddDateToMeal"
     agenda-group "eatenMeals"
     when
@@ -16,6 +18,14 @@ rule "RecipeEatenCounterUpdate"
         $m: Meal($recipe: recipe)
     then
         $recipe.setTimesEaten($recipe.getTimesEaten() + 1);
+end
+
+rule "Calculate rating" salience -1
+    agenda-group "eatenMeals"
+    when
+        $m: Meal($recipe: recipe)
+    then
+        $recipe.setRating($recipe.getTimesEaten()/maxTimesEaten);
 end
 
 // TODO: kod metode za izlistavanje rezultata pretrage
