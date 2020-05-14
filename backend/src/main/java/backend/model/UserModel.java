@@ -22,6 +22,11 @@ public class UserModel {
         GAIN
     }
 
+    enum Gender {
+        FEMALE,
+        MALE
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id", nullable=false, unique=true)
@@ -40,13 +45,16 @@ public class UserModel {
     private String lastName;
 
     @Column
+    private int age;
+
+    @Column
     private double weight;
 
     @Column
     private double height;
 
     @Column
-    private String gender;
+    private Gender gender;
 
     @ManyToMany
     @JoinTable(
@@ -56,7 +64,7 @@ public class UserModel {
     private Set<Allergen> userAllergens;
 
     @Column
-    private double calories;
+    private double caloriesThreshold;
 
     @Column
     private WeightGoal weightGoal;
