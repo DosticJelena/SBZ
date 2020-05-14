@@ -1,9 +1,28 @@
 import backend.model.Meal;
+import backend.model.Recipe;
 import java.sql.Timestamp;
 
 rule "AddDateToMeal"
+    agenda-group "eatenMeals"
     when
         $m: Meal(mealTime == null)
     then
         $m.setMealTime(new Timestamp(System.currentTimeMillis()));
+end
+
+rule "RecipeEatenCounterUpdate"
+    agenda-group "eatenMeals"
+    when
+        $m: Meal($recipe: recipe)
+    then
+        $recipe.setTimesEaten($recipe.getTimesEaten() + 1);
+end
+
+// TODO: kod metode za izlistavanje rezultata pretrage
+rule "RecipeViewedCounterUpdate"
+    agenda-group "recipeSearchResults"
+    when
+        $r: Recipe()
+    then
+        $r.setTimesViewed($r.getTimesViewed() + 1);
 end

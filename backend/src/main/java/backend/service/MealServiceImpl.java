@@ -43,7 +43,9 @@ public class MealServiceImpl implements MealService {
     @Override
     public Meal save(Meal meal){
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
-        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "ksession-rules");
+        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "meals-rules");
+
+        kSession.getAgenda().getAgendaGroup("eatenMeals").setFocus();
 
         kSession.insert(meal);
         kSession.fireAllRules();
