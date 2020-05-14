@@ -14,6 +14,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Recipe {
+    
+    public enum Popularity{
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 
     enum Popularity{
         LOW,
