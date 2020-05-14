@@ -20,6 +20,9 @@ public class MealServiceImpl implements MealService {
     @Autowired
     private MealRepository mealRepository;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
     @Override
     public Meal findById(long id){
         return mealRepository.findById(id);
@@ -44,6 +47,15 @@ public class MealServiceImpl implements MealService {
     public Meal save(Meal meal){
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
         KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "meals-rules");
+
+        long maxTimesEaten = 0;
+        for(Recipe r: recipeRepository.findAll()){
+            if(maxTimesEaten < r.getTimesEaten()){
+                maxTimesEaten = r.getTimesEaten();
+            }
+        }
+
+        kSession.setGlobal("maxTimesEaten", maxTimesEaten);
 
         kSession.getAgenda().getAgendaGroup("eatenMeals").setFocus();
 
