@@ -41,6 +41,10 @@ public class RecipeServiceImpl implements RecipeService {
         kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
         kSession.fireAllRules();
 
+        for (Recipe r : recipes){
+            recipeRepository.save(r);
+        }
+
         return recipeRepository.findAll();
     }
 

@@ -48,7 +48,7 @@ public class MealServiceImpl implements MealService {
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
         KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "meals-rules");
 
-        long maxTimesEaten = 0;
+        long maxTimesEaten = 1;
         for(Recipe r: recipeRepository.findAll()){
             if(maxTimesEaten < r.getTimesEaten()){
                 maxTimesEaten = r.getTimesEaten();
