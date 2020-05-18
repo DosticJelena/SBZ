@@ -9,4 +9,8 @@
         <ksession name="meals-rules"/>
     </kbase>
 
+    <kbase name="recipes" packages="rules">
+        <ksession name="recipes-rules"/>
+    </kbase>
+
 </kmodule>

@@ -35,4 +35,5 @@ rule "RecipeViewedCounterUpdate"
         $r: Recipe()
     then
         $r.setTimesViewed($r.getTimesViewed() + 1);
+        //TODO: dodati u bazu automatski
 end
