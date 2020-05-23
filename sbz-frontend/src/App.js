@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import FindRecipe from './components/FindRecipe/FindRecipe';
 import PersonalProfile from './components/PersonalProfile/PersonalProfile';
 import HomePage from './components/HomePage/HomePage';
+import Register from './components/HomePage/Register/Register';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route exact path="/profile">
           <PersonalProfile />
+        </Route>
+        <Route>
+          <Register/>
         </Route>
       </Router>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/hop.png';
 
-import { BrowserRouter as Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Login from './Login/Login';
 
 function HomePage() {
