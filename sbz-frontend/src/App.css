@@ -35,6 +35,8 @@
   min-height: 45vh;
   padding: 5%;
   color: white;
+  border: 1px solid rgb(222, 184, 135);
+  border-right: 0;
 }
 
 .Login .form-control {
@@ -43,6 +45,24 @@
   border-radius: 0;
   border: 0;
   border-bottom: white 1px solid;
+}
+
+.Login button {
+  background-color: green;
+  border: 0;
+  border-radius: 0;
+}
+
+.Login button:hover {
+  background-color: rgb(0, 94, 0);
+}
+
+.Login small {
+  margin-left: 10px;
+}
+
+.Login a {
+  color: green;
 }
 
 menu {
