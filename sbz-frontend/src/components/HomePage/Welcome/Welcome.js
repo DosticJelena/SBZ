@@ -11,13 +11,30 @@ class Welcome extends React.Component {
         }
     }
 
+    logOut = () => {
+        this.props.changeLoggedInStatus();
+        localStorage.removeItem('username');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        localStorage.removeItem('age');
+        localStorage.removeItem('weight');
+        localStorage.removeItem('height');
+        localStorage.removeItem('id');
+        localStorage.removeItem('calories');
+        localStorage.removeItem('goal');
+        localStorage.removeItem('loggedIn');
+        localStorage.setItem('loggedIn', false);
+        console.log(localStorage);
+    }
+
     render() {
+
         return (
             <div className="Welcome">
-                <h3>Welcome, Ime Prezime!</h3>
+                <h3>Welcome, {localStorage.firstName} {localStorage.lastName}!</h3>
                 <div>
                     <Link to="profile"><button>Profile</button></Link>
-                    <p onClick={this.props.changeLoggedInStatus}>Log Out</p>
+                    <p onClick={this.logOut}>Log Out</p>
                 </div>
             </div>
         );

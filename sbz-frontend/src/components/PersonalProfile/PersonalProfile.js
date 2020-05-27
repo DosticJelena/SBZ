@@ -13,7 +13,7 @@ class PersonalProfile extends React.Component {
                     
                     <div className="home-logo">
                         <Link to="/"><h3>The Recipe Blender <img src={logo} alt="logo-img" width="35" height="35" /></h3></Link>
-                        <p>Ime Prezime</p>
+                        <p>{localStorage.firstName} {localStorage.lastName}</p>
                     </div>
                 </nav>
                 <div className="row">
@@ -22,23 +22,23 @@ class PersonalProfile extends React.Component {
                             <h3>Personal Information</h3>
                             <br />
                             <table>
-                                <tr><td>Age: </td><td><span className="user-values">22</span></td></tr>
-                                <tr><td>Weight: </td><td><span className="user-values">57</span>kg</td></tr>
-                                <tr><td>Height: </td><td><span className="user-values">168</span>cm</td></tr>
+                                <tr><td>Age: </td><td><span className="user-values">{localStorage.age}</span></td></tr>
+                                <tr><td>Weight: </td><td><span className="user-values">{localStorage.weight}</span>kg</td></tr>
+                                <tr><td>Height: </td><td><span className="user-values">{localStorage.height}</span>cm</td></tr>
                             </table>
                         </div>
                         <div className="fitness-info">
                             <h3>Fitness goal</h3>
                             <br />
                             <p>
-                                <span className="goal">LOSE</span>
-                                <span className="goal active-goal">MANTAIN</span>
-                                <span className="goal">GAIN</span>
+                                <span className={(localStorage.goal == "LOSE") ? "goal active-goal" : "goal"}>LOSE</span>
+                                <span className={(localStorage.goal == "MAINTAIN") ? "goal active-goal" : "goal"}>MAINTAIN</span>
+                                <span className={(localStorage.goal == "GAIN") ? "goal active-goal" : "goal"}>GAIN</span>
                             </p>
                             <p>Recomended calorie & macros intake:</p>
                             <table>
                                 <tr><td>Calories</td><td>Carbs</td><td>Protein</td><td>Fat</td></tr>
-                                <tr><td>2000</td><td>123</td><td>123</td><td>23</td></tr>
+                                <tr><td>{localStorage.calories}</td><td>123</td><td>123</td><td>23</td></tr>
                             </table>
                         </div>
                     </div>

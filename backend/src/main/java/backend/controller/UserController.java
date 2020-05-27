@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.dto.LoginDTO;
 import backend.model.UserModel;
 import backend.service.serviceInterface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping(value="/login", consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> loginUser(@RequestBody UserModel user){
+    public ResponseEntity<?> loginUser(@RequestBody LoginDTO user){
         if(userService.findByUsername(user.getUsername()) == null) {
             throw new RuntimeException("This username does not exist!");
         }else{
