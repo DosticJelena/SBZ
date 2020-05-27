@@ -25,4 +25,7 @@ public class Allergen {
     @ManyToMany(mappedBy = "userAllergens")
     private Set<UserModel> users;
 
+    @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Ingredient> ingredients;
+
 }

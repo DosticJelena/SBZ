@@ -1,6 +1,7 @@
 package backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,6 +50,11 @@ public class Recipe {
 
     @Column
     private Popularity popularity;
+
+    @JsonManagedReference
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="location", referencedColumnName = "location_id", nullable = true)
+    private Location location;
 
 
     @Override
