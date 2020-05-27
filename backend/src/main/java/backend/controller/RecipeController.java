@@ -1,13 +1,20 @@
 package backend.controller;
 
+import backend.dto.SearchParametersDTO;
+import backend.model.Allergen;
+import backend.model.Ingredient;
 import backend.model.Recipe;
+import backend.service.serviceInterface.AllergenService;
+import backend.service.serviceInterface.IngredientService;
 import backend.service.serviceInterface.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("recipes")
@@ -19,6 +26,12 @@ public class RecipeController {
     @GetMapping(value="/")
     public List<Recipe> getAllRecipes(){
         return recipeService.findAll();
+    }
+
+    @PostMapping(value="/search", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> searchForRecipes(@RequestBody SearchParametersDTO searchParams){
+        return ResponseEntity.ok(recipeService.searchSpecific(searchParams.getIngredients(),
+                searchParams.getAllergens(), searchParams.getLocation()));
     }
 
 }
