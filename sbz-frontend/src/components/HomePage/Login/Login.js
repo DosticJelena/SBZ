@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class Login extends React.Component {
 
@@ -12,20 +13,28 @@ class Login extends React.Component {
         }
     }
 
-    /*
     SendLoginRequest = event => {
         event.preventDefault();
-        axios.post("https://deployment-isa.herokuapp.com/auth/login", this.state)
-            .then((resp) => {
-                localStorage.setItem('token', resp.data.accessToken)
-                axios.defaults.headers.common['Authorization'] = `Bearer ${resp.data.accessToken}`;
-                axios.get("https://deployment-isa.herokuapp.com/auth/getMyUser")
-                    .then((resp) => { })
+        this.props.changeLoggedInStatus();
+        axios.post("http://localhost:8080/users/login", {
+            username: this.state.email,
+            password: this.state.password
+        })
+            .then((response) => {
+                localStorage.setItem('id', response.data.id);
+                localStorage.setItem('username', response.data.username);
+                localStorage.setItem('firstName', response.data.firstName);
+                localStorage.setItem('lastName', response.data.lastName);
+                localStorage.setItem('age', response.data.age);
+                localStorage.setItem('weight', response.data.weight);
+                localStorage.setItem('height', response.data.height);
+                localStorage.setItem('calories', response.data.caloriesThreshold);
+                localStorage.setItem('goal', response.data.weightGoal);
+                localStorage.setItem('loggedIn', true);
+                console.log(localStorage);
             })
-            .catch((error) => NotificationManager.error('Wrong username or password', 'Error!', 4000)
-            )
+            .catch((error) => console.log(error))
     }
-    */
 
     handleChange = e => {
         this.setState({ ...this.state, [e.target.name]: e.target.value });
@@ -35,10 +44,10 @@ class Login extends React.Component {
         return (
             <div className="Login">
                 <h3>Login</h3>
-                <form onSubmit={this.props.changeLoggedInStatus}>
+                <form onSubmit={this.SendLoginRequest}>
                     <div className="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" />
+                        <input type="text" name="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" />
                     </div>
                     <div className="form-group">
                         <label for="pass">Password</label>
