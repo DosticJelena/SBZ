@@ -20,14 +20,33 @@
   min-height: 45vh;
 }
 
-.orange-title img, .orange-title h1 {
-  display: inline-block;
-  margin: auto;
+.orange-title img {
+  margin-left: 20px;
 }
 
 .orange-title h1 {
   font-family: 'Anton', sans-serif;
   margin-right: 20px;
+}
+
+.orange-title p {
+  color: rgb(222, 184, 135);
+}
+
+.Register form {
+  min-height: 100vh;
+  background-color: rgb(86,39,59,0.7);
+  padding: 5% 10%;
+  color: white;
+}
+
+.Register h2, .Register h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.Register a {
+  color: white;
+  text-decoration: none;
 }
 
 .Login {
@@ -39,7 +58,7 @@
   border-right: 0;
 }
 
-.Login .form-control {
+.Login .form-control, .Register .form-control {
   background-color: transparent;
   color: white;
   border-radius: 0;
@@ -47,22 +66,37 @@
   border-bottom: white 1px solid;
 }
 
-.Login button {
+.Login button, .Welcome button, .Register button {
   background-color: green;
   border: 0;
   border-radius: 0;
 }
 
-.Login button:hover {
+.Login button:hover, .Welcome button:hover, .Register button:hover {
   background-color: rgb(0, 94, 0);
 }
 
-.Login small {
+.Login small, .Register small {
   margin-left: 10px;
 }
 
-.Login a {
+.Login a, .Register small a {
   color: green;
+  text-decoration: underline;
+}
+
+.Welcome {
+  background-color: rgb(86,39,59,0.7);
+  min-height: 45vh;
+  padding: 5%;
+  color: white;
+  border: 1px solid rgb(222, 184, 135);
+  border-right: 0;
+}
+
+.Welcome h3 {
+  font-family: 'Anton', sans-serif;
+  color: rgb(222, 184, 135);
 }
 
 menu {
@@ -90,12 +124,7 @@ menu {
 
 /* ----- */
 
-.row {
-  margin:0;
-  padding: 0;
-}
-
-.col-7, .col-5 {
+.row, .col-7, .col-6, .col-5, .col-4 {
   margin: 0;
   padding: 0;
 }
@@ -103,13 +132,8 @@ menu {
 .FindRecipe nav, .PersonalProfile nav{
   background-color: rgb(86,39,59,0.7);
   min-height: 13vh;
-  padding-top: 3vh;
-  padding-left: 20px;
+  padding: 10px 15px;
   color: rgb(222, 184, 135);
-}
-
-.FindRecipe nav img, .FindRecipe nav .home-logo, .PersonalProfile nav img, .PersonalProfile nav .home-logo {
-  display: inline-block;
 }
 
 .home-logo {
@@ -126,6 +150,7 @@ menu {
 
 .FindRecipe nav h3, .PersonalProfile nav h3 {
   font-family: 'Anton', sans-serif;
+  margin-top: 3vh;
 }
 
 .filter > div {
@@ -137,26 +162,16 @@ menu {
 }
 
 .filter > div:hover {
-  background-color: rgb(222, 184, 135, 0.6);
+  background-color: rgb(222, 184, 135, 0.4);
 }
 
 .filter > div h4, .filter > div h5 {
   font-family: 'Anton', sans-serif;
 }
 
-.step-1 {
+.step-1, .step-2, .step-3 {
   min-height: 70vh;
-  background-color: rgb(222, 184, 135, 0.5);
-}
-
-.step-2 {
-  min-height: 70vh;
-  background-color: rgb(222, 184, 135, 0.5);
-}
-
-.step-3 {
-  min-height: 70vh;
-  background-color: rgb(222, 184, 135, 0.5);
+  background-color: rgb(222, 184, 135, 0.3);
 }
 
 .ing-dropdown {
@@ -183,14 +198,119 @@ menu {
 }
 
 .ing-dropdown:hover, .ing-dropdown:focus, .ing-dropdown:after {
-  background-color: rgb(86,39,59,0.8);
+  background-color: rgb(86,39,59,0.6);
   border: 1px rgb(86,39,59) solid;
 }
 
 .choosen-ingredients {
   min-height: 40vh;
-  background-color: rgb(222, 184, 135, 0.6);
+  background-color: rgba(222, 184, 135, 0.4);
   border: 1px solid rgb(222, 184, 135);
   padding: 20px;
 }
+
+/* ---------------- profile ----------------- */
+
+.profile-info {
+  background-color: rgb(222, 184, 135, 0.25);
+  border-right: rgb(222, 184, 135) solid 1px;
+  padding: 30px;
+  margin-top: 4vh;
+  color: rgb(222, 184, 135);
+}
+
+.profile-info h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.profile-info table {
+  font-size: 1.1rem;
+}
+
+.profile-info table td:nth-child(1) {
+  text-align: right;
+  padding-right: 8px;
+  font-family: 'Anton', sans-serif;
+}
+
+.user-values {
+  border-bottom: 0.5px solid rgb(222, 184, 135);
+  padding: 2px 7px;
+}
+
+.fitness-info {
+  background-color: rgb(222, 184, 135, 0.25);
+  border-right: rgb(222, 184, 135) solid 1px;
+  padding: 30px;
+  margin-top: 4vh;
+  color: rgb(222, 184, 135);
+}
+
+.fitness-info h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.fitness-info table td {
+  text-align: center;
+  padding: 8px 12px;
+}
+
+.fitness-info table tr:nth-child(1) {
+  border-bottom: rgb(1, 53, 1) 2px solid;
+}
+
+.fitness-info table td:nth-child(2), .fitness-info table td:nth-child(3) {
+  border-left: 1px solid rgb(222, 184, 135);
+  border-right: 1px solid rgb(222, 184, 135);
+}
+
+.calorie-tracking {
+  background-color: rgb(222, 184, 135, 0.25);
+  border-left: 1px solid rgb(222, 184, 135);
+  color: rgb(222, 184, 135);
+  padding: 30px;
+  margin-top: 4vh;
+}
+
+.calorie-tracking h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.calorie-tracking h5, .calorie-tracking h4 {
+  font-family: 'Anton', sans-serif;
+}
+
+.calorie-tracking p {
+  color: rgb(86,39,59);
+}
+
+.macros {
+  background-color: rgb(0, 128, 0, 0.5);
+  padding: 20px;
+  margin: 10px 10px 0 0px;
+  color: rgb(1, 53, 1);
+  font-family: 'Anton', sans-serif;
+}
+
+.goal {
+  padding: 7px 10px;
+  margin: 4px 7px 4px 0px;
+  border: rgb(222, 184, 135) 1px solid;
+}
+
+.active-goal {
+  background-color: rgb(0, 128, 0, 0.4);
+}
+
+.progress {
+  width: calc(100% - 10px);
+  background-color: rgb(222, 184, 135, 0.4);
+  border-radius: 0;
+  height: 5px;
+}
+
+.progress-bar {
+  background-color: rgb(1, 53, 1, 0.9);
+}
+
 

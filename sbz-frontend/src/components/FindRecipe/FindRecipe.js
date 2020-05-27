@@ -37,9 +37,8 @@ class FindRecipe extends React.Component {
         return (
             <div className="FindRecipe">
                 <nav>
-                    <img src={logo} alt="logo-img" width="64" height="64" />
                     <div className="home-logo">
-                        <Link to="/"><h3>The Recipe Blend</h3></Link>
+                        <Link to="/"><h3>The Recipe Blender <img src={logo} alt="logo-img" width="35" height="35" /></h3></Link>
                         <p>Find Recipe</p>
                     </div>
                 </nav>
