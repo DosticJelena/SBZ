@@ -35,7 +35,7 @@ class Login extends React.Component {
         return (
             <div className="Login">
                 <h3>Login</h3>
-                <form>
+                <form onSubmit={this.props.changeLoggedInStatus}>
                     <div className="form-group">
                         <label for="email">Email address</label>
                         <input type="email" name="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" />
