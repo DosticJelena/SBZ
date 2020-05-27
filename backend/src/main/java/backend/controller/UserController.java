@@ -4,10 +4,7 @@ import backend.model.UserModel;
 import backend.service.serviceInterface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -25,7 +22,7 @@ public class UserController {
         }else{
             UserModel tempUser = userService.findByUsername(user.getUsername());
             if(user.getPassword().equals(tempUser.getPassword())){
-                return ResponseEntity.ok(tempUser.getId());
+                return ResponseEntity.ok(tempUser);
             }else{
                 throw new RuntimeException("Incorrect password!");
             }
@@ -40,6 +37,11 @@ public class UserController {
             userService.save(user);
             return ResponseEntity.ok("Account registered");
         }
+    }
+
+    @GetMapping(value="/getById/{id}", produces= APPLICATION_JSON_VALUE)
+    public UserModel getUserById(@PathVariable("id") long id){
+        return userService.findById(id);
     }
 
 }
