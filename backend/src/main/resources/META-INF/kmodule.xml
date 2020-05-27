@@ -13,4 +13,8 @@
         <ksession name="recipes-rules"/>
     </kbase>
 
+    <kbase name="ceprules" packages="cep">
+        <ksession name="cep-rules"/>
+    </kbase>
+
 </kmodule>
