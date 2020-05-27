@@ -15,8 +15,9 @@
   background-color: rgb(86,39,59,0.7);
   color: white;
   padding: 5%;
-  width: 50%;
+  width: 90%;
   margin-right: auto;
+  min-height: 45vh;
 }
 
 .orange-title img, .orange-title h1 {
@@ -29,10 +30,45 @@
   margin-right: 20px;
 }
 
+.Login {
+  background-color: rgb(86,39,59,0.7);
+  min-height: 45vh;
+  padding: 5%;
+  color: white;
+  border: 1px solid rgb(222, 184, 135);
+  border-right: 0;
+}
+
+.Login .form-control {
+  background-color: transparent;
+  color: white;
+  border-radius: 0;
+  border: 0;
+  border-bottom: white 1px solid;
+}
+
+.Login button {
+  background-color: green;
+  border: 0;
+  border-radius: 0;
+}
+
+.Login button:hover {
+  background-color: rgb(0, 94, 0);
+}
+
+.Login small {
+  margin-left: 10px;
+}
+
+.Login a {
+  color: green;
+}
+
 menu {
-  margin-top: 10vh;
+  margin-top: 7vh;
   background-color: rgb(222, 184, 135, 0.5);
-  min-height: 26vh;
+  min-height: 27vh;
   padding: 0;
   padding-top: 3vh;
 }
@@ -56,6 +92,12 @@ menu {
 
 .row {
   margin:0;
+  padding: 0;
+}
+
+.col-7, .col-5 {
+  margin: 0;
+  padding: 0;
 }
 
 .FindRecipe nav, .PersonalProfile nav{
