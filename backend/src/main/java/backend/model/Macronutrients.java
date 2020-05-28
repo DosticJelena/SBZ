@@ -1,5 +1,7 @@
 package backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +33,11 @@ public class Macronutrients {
     @Column
     private double calories;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "macros")
     private Recipe recipe;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "macros")
     private UserModel user;
 
