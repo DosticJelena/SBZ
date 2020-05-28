@@ -1,6 +1,8 @@
 package backend.model;
 
 
+import backend.model.enumeration.Gender;
+import backend.model.enumeration.WeightGoal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserModel {
-
-    enum WeightGoal{
-        LOSE,
-        MAINTAIN,
-        GAIN
-    }
-
-    enum Gender {
-        FEMALE,
-        MALE
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

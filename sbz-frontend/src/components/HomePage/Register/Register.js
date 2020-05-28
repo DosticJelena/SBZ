@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import axios from 'axios';
+import {NotificationManager} from 'react-notifications';
 
 import logo from '../../../assets/hop.png';
 
@@ -17,33 +19,33 @@ class Register extends React.Component {
             gender: '',
             height: '',
             weight: '',
-            passwordConfirm: ''
+            passwordConfirm: '',
+            goal: ''
         }
     }
 
-    /*
     SendRegisterRequest = event => {
         event.preventDefault();
         console.log(this.state);
-        axios.post("https://deployment-isa.herokuapp.com/auth/register", {
-            email: this.state.email,
+        axios.post("http://localhost:8080/users/register", {
+            username: this.state.email,
             password: this.state.password,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            address: this.state.address,
-            city: this.state.city,
-            country: this.state.country,
-            phoneNumber: this.state.phoneNumber,
-            medicalNumber: this.state.medicalNumber
+            age: this.state.age,
+            gender: this.state.gender,
+            height: this.state.height,
+            weight: this.state.weight,
+            weightGoal: this.state.goal
 
         })
-            .then((resp) => {
-                this.props.history.push('/login');
-            })
-            .catch((error) => NotificationManager.error('Wrong input', 'Error!', 4000))
+        .then((resp) => {
+            console.log(resp.data);
+            this.props.history.push('/');
+        })
+        .catch((error) => {console.log(error.response); NotificationManager.error(error.response.data,"Error!",3000)})
 
     }
-    */
 
     handleChange = e => {
         this.setState({ ...this.state, [e.target.name]: e.target.value });
@@ -57,7 +59,7 @@ class Register extends React.Component {
 
                     </div>
                     <div className="col-8">
-                        <form>
+                        <form onSubmit={this.SendRegisterRequest}>
                             <Link to="/"><h2>The Recipe Blender <img src={logo} alt="logo-img" width="35" height="35" /></h2></Link>
                             <hr />
                             <h3>Register</h3>
@@ -66,13 +68,13 @@ class Register extends React.Component {
                             <div className="row">
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="firstName">First Name</label>
+                                        <label htmlFor="firstName">First Name</label>
                                         <input type="text" name="firstName" onChange={this.handleChange} className="form-control" id="firstName" aria-describedby="emailHelp" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="firstName">Last Name</label>
+                                        <label htmlFor="firstName">Last Name</label>
                                         <input type="text" name="lastName" onChange={this.handleChange} className="form-control" id="lastName" aria-describedby="emailHelp" />
                                     </div>
                                 </div>
@@ -80,13 +82,13 @@ class Register extends React.Component {
                             <div className="row">
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" name="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" />
+                                        <label htmlFor="email">Email address</label>
+                                        <input type="text" name="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="pass">Password</label>
+                                        <label htmlFor="pass">Password</label>
                                         <input type="password" name="password" onChange={this.handleChange} className="form-control" id="pass" />
                                     </div>
                                 </div>
@@ -97,7 +99,7 @@ class Register extends React.Component {
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="confPass">Confirm Password</label>
+                                        <label htmlFor="confPass">Confirm Password</label>
                                         <input type="password" name="passwordConfirm" onChange={this.handleChange} className="form-control" id="confPass" />
                                     </div>
                                 </div>
@@ -108,54 +110,54 @@ class Register extends React.Component {
                             <div className="row">
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="age">Age</label>
+                                        <label htmlFor="age">Age</label>
                                         <input type="number" name="age" onChange={this.handleChange} className="form-control" id="age" />
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="height">Height</label>
+                                        <label htmlFor="height">Height</label>
                                         <input type="number" name="height" onChange={this.handleChange} className="form-control" id="height" />cm
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="weight">Weight</label>
+                                        <label htmlFor="weight">Weight</label>
                                         <input type="number" name="weight" onChange={this.handleChange} className="form-control" id="weight" />kg
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
-                                        <label for="gender">Gender </label>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="female" name="gender" class="custom-control-input" />
-                                            <label class="custom-control-label" for="female">Female</label>
+                                        <label htmlFor="gender">Gender </label>
+                                        <div className="custom-control custom-radio">
+                                            <input type="radio" id="female" value="0" onChange={this.handleChange} name="gender" className="custom-control-input" />
+                                            <label className="custom-control-label" htmlFor="female">Female</label>
                                         </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="male" name="gender" class="custom-control-input" />
-                                            <label class="custom-control-label" for="male">Male</label>
+                                        <div className="custom-control custom-radio">
+                                            <input type="radio" id="male" value="1" onChange={this.handleChange} name="gender" className="custom-control-input" />
+                                            <label className="custom-control-label" htmlFor="male">Male</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label for="gender">Fitness Goal </label>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="lose" name="goal" class="custom-control-input" />
-                                        <label class="custom-control-label" for="lose">Lose</label>
+                                    <label htmlFor="gender">Fitness Goal </label>
+                                    <div className="custom-control custom-radio">
+                                        <input type="radio" id="lose" value="0" name="goal" onChange={this.handleChange} className="custom-control-input" />
+                                        <label className="custom-control-label" htmlFor="lose">Lose</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="mantain" name="goal" class="custom-control-input" />
-                                        <label class="custom-control-label" for="mantain">Mantain</label>
+                                    <div className="custom-control custom-radio">
+                                        <input type="radio" id="mantain" value="1" onChange={this.handleChange} name="goal" className="custom-control-input" />
+                                        <label className="custom-control-label" htmlFor="mantain">Mantain</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="gain" name="goal" class="custom-control-input" />
-                                        <label class="custom-control-label" for="gain">Gain</label>
+                                    <div className="custom-control custom-radio">
+                                        <input type="radio" id="gain" value="2" onChange={this.handleChange} name="goal" className="custom-control-input" />
+                                        <label className="custom-control-label" htmlFor="gain">Gain</label>
                                     </div>
                                 </div>
                             </div>
 
                             <hr />
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-success">Submit</button>
                             <small>Already have an account? <Link to="/">Log In!</Link></small>
                         </form>
                     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {NotificationManager} from 'react-notifications';
 
 class Login extends React.Component {
 
@@ -33,7 +34,7 @@ class Login extends React.Component {
                 localStorage.setItem('loggedIn', true);
                 console.log(localStorage);
             })
-            .catch((error) => console.log(error))
+            .catch((error) => NotificationManager.error(error.response.data,"Error!",3000))
     }
 
     handleChange = e => {
@@ -53,7 +54,7 @@ class Login extends React.Component {
                         <label for="pass">Password</label>
                         <input type="password" name="password" onChange={this.handleChange} className="form-control" id="pass" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-success">Submit</button>
                     <small>Need an account? <Link to="register">Register!</Link></small>
                 </form>
             </div>

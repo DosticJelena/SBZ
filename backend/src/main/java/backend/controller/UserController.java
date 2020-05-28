@@ -1,6 +1,7 @@
 package backend.controller;
 
 import backend.dto.LoginDTO;
+import backend.dto.RegisterDTO;
 import backend.model.UserModel;
 import backend.service.serviceInterface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,23 @@ public class UserController {
     @PostMapping(value="/login", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginUser(@RequestBody LoginDTO user){
         if(userService.findByUsername(user.getUsername()) == null) {
-            throw new RuntimeException("This username does not exist!");
+            return ResponseEntity.badRequest().body("This username does not exist!");
         }else{
             UserModel tempUser = userService.findByUsername(user.getUsername());
             if(user.getPassword().equals(tempUser.getPassword())){
                 return ResponseEntity.ok(tempUser);
             }else{
-                throw new RuntimeException("Incorrect password!");
+                return ResponseEntity.badRequest().body("Incorrect password!");
             }
         }
     }
 
     @PostMapping(value="/register", consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> registerUser(@RequestBody UserModel user){
+    public ResponseEntity<?> registerUser(@RequestBody RegisterDTO user){
         if(userService.findByUsername(user.getUsername()) != null){
-            throw new RuntimeException("Username already exists!");
+            return ResponseEntity.badRequest().body("Username already exists!");
         }else{
-            userService.save(user);
+            userService.save(user.mapToModel());
             return ResponseEntity.ok("Account registered");
         }
     }
