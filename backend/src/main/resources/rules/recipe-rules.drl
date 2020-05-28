@@ -20,3 +20,11 @@ rule "Set popularity HIGH"
     then
         $r.setPopularity(Recipe.Popularity.HIGH);
 end
+
+rule "RecipeViewedCounterUpdate"
+    agenda-group "recipeSearchResults"
+    when
+        $r: Recipe()
+    then
+        $r.setTimesViewed($r.getTimesViewed() + 1);
+end
