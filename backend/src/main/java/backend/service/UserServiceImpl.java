@@ -1,6 +1,7 @@
 package backend.service;
 
 import backend.kie.util.KnowledgeSessionHelper;
+import backend.model.Macronutrients;
 import backend.model.UserModel;
 import backend.repository.UserRepository;
 import backend.service.serviceInterface.UserService;
@@ -37,6 +38,10 @@ public class UserServiceImpl implements UserService {
     public UserModel save(UserModel userModel){
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
         KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "user-rules");
+
+        if(userModel.getMacros() == null){
+            userModel.setMacros(new Macronutrients());
+        }
 
         kSession.insert(userModel);
 

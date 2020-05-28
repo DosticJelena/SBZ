@@ -54,3 +54,14 @@ rule "CalculateUserCalorieThreshold_LOSE_male"
     then
         $u.setCaloriesThreshold((66 + 13.7 * $weight + 5 * $height - 6.8 * $age)*1.25 - 200);
 end
+
+rule "CalculateMacrosBasedOnCalorieThreshold" salience -1
+    agenda-group "calorieCalculator"
+    when
+        $u: UserModel($macros: macros, $calorieThreshold: caloriesThreshold)
+    then
+        $u.getMacros().setCalories($u.getCaloriesThreshold());
+        $u.getMacros().setProtein($u.getCaloriesThreshold()*0.5/4);
+        $u.getMacros().setCarbs($u.getCaloriesThreshold()*0.3/4);
+        $u.getMacros().setCalories($u.getCaloriesThreshold()*0.2/9);
+end

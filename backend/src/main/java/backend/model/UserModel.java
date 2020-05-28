@@ -57,6 +57,10 @@ public class UserModel {
     @Column
     private double caloriesThreshold;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "macros_id", referencedColumnName = "id")
+    private Macronutrients macros;
+
     @Column
     private WeightGoal weightGoal;
 
