@@ -34,6 +34,9 @@ public class Macronutrients {
     @OneToOne(mappedBy = "macros")
     private Recipe recipe;
 
+    @OneToOne(mappedBy = "macros")
+    private UserModel user;
+
     @Override
     public String toString() {
         return "Macronutrients{" +
