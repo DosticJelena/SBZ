@@ -49,7 +49,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<Recipe> findAll(){
-
         return recipeRepository.findAll();
     }
 
@@ -70,7 +69,7 @@ public class RecipeServiceImpl implements RecipeService {
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         List<Allergen> allergens = new ArrayList<Allergen>();
         Location location = new Location();
-        if(loc != null){
+        if(loc != null && !loc.equals("")){
             location = locationRepository.findByName(loc);
         }
 
@@ -114,17 +113,16 @@ public class RecipeServiceImpl implements RecipeService {
                     }
                 }
                 if (noAllergicIngredients) {
+                    if(r.getLocation().getName().equals(location.getName()) || loc.equals("")) {
+                        KieContainer kc = KnowledgeSessionHelper.createRuleBase();
+                        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "recipes-rules");
 
-                    KieContainer kc = KnowledgeSessionHelper.createRuleBase();
-                    KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "recipes-rules");
+                        kSession.insert(r);
 
-                    kSession.insert(r);
+                        kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
+                        kSession.fireAllRules();
+                        recipeRepository.save(r);
 
-                    kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
-                    kSession.fireAllRules();
-                    recipeRepository.save(r);
-
-                    if(r.getLocation().getName().equals(location.getName())) {
                         validRecipes.add(r);
                     } else if(r.getLocation().getContinent().equals(location.getContinent())){
                         continentRecipes.add(r);
