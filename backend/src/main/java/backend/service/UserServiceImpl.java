@@ -1,9 +1,12 @@
 package backend.service;
 
+import backend.kie.util.KnowledgeSessionHelper;
 import backend.model.UserModel;
 import backend.repository.UserRepository;
 import backend.service.serviceInterface.UserService;
 import org.apache.catalina.User;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel save(UserModel userModel){
+        KieContainer kc = KnowledgeSessionHelper.createRuleBase();
+        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "user-rules");
+
+        kSession.insert(userModel);
+
+        kSession.getAgenda().getAgendaGroup("calorieCalculator").setFocus();
+        kSession.fireAllRules();
         return userRepository.save(userModel);
     }
 

@@ -49,21 +49,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<Recipe> findAll(){
-        KieContainer kc = KnowledgeSessionHelper.createRuleBase();
-        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "meals-rules");
-
-        List<Recipe> recipes = recipeRepository.findAll();
-
-        for (Recipe r : recipes){
-            kSession.insert(r);
-        }
-
-        kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
-        kSession.fireAllRules();
-
-        for (Recipe r : recipes){
-            recipeRepository.save(r);
-        }
 
         return recipeRepository.findAll();
     }
@@ -129,6 +114,16 @@ public class RecipeServiceImpl implements RecipeService {
                     }
                 }
                 if (noAllergicIngredients) {
+
+                    KieContainer kc = KnowledgeSessionHelper.createRuleBase();
+                    KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "recipes-rules");
+
+                    kSession.insert(r);
+
+                    kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
+                    kSession.fireAllRules();
+                    recipeRepository.save(r);
+
                     if(r.getLocation().getName().equals(location.getName())) {
                         validRecipes.add(r);
                     } else if(r.getLocation().getContinent().equals(location.getContinent())){

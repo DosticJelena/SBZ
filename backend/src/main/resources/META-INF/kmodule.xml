@@ -13,6 +13,10 @@
         <ksession name="recipes-rules"/>
     </kbase>
 
+    <kbase name="users" packages="rules">
+        <ksession name="user-rules"/>
+    </kbase>
+
     <kbase name="ceprules" packages="cep">
         <ksession name="cep-rules"/>
     </kbase>
