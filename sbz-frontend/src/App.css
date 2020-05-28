@@ -66,13 +66,13 @@
   border-bottom: white 1px solid;
 }
 
-.Login button, .Welcome button, .Register button {
+.Login button, .Welcome button, .Register button, .green-btn {
   background-color: green;
   border: 0;
   border-radius: 0;
 }
 
-.Login button:hover, .Welcome button:hover, .Register button:hover {
+.Login button:hover, .Welcome button:hover, .Register button:hover, .green-btn:hover {
   background-color: rgb(0, 94, 0);
 }
 

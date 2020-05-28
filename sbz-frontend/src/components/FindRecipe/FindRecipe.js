@@ -10,7 +10,9 @@ class FindRecipe extends React.Component {
         super(props);
         this.state = {
             ingredients: [],
-            choosenIngredients: []
+            choosenIngredients: [],
+            allergens: [],
+            location: ''
         }
     }
 
@@ -23,6 +25,19 @@ class FindRecipe extends React.Component {
         } else {
             this.setState({ choosenIngredients: [...this.state.choosenIngredients, e.target.value] });
         }
+    }
+
+    searchRecipes = () => {
+        axios.post("http://localhost:8080/recipes/search",{
+            ingredients: this.state.choosenIngredients,
+            allergens: this.state.allergens,
+            location: this.state.location,
+            showSemiValid: true
+        })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(error => console.log(error))
     }
 
     componentDidMount() {
@@ -75,6 +90,7 @@ class FindRecipe extends React.Component {
                     <div className="step-3 col-md-4 col-12">
                         <h4>Step 3: Find Recipe!</h4>
                         <hr />
+                        <button onClick={this.searchRecipes} className="btn btn-success green-btn">Find Recipes!</button>
                     </div>
                 </div>
             </div>
