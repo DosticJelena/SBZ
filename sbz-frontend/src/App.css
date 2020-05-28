@@ -129,11 +129,23 @@ menu {
   padding: 0;
 }
 
+.FindRecipe {
+  padding-bottom: 10vh;
+}
+
 .FindRecipe nav, .PersonalProfile nav{
   background-color: rgb(86,39,59,0.7);
   min-height: 13vh;
   padding: 10px 15px;
   color: rgb(222, 184, 135);
+}
+
+.search-results {
+  background-color: rgb(222, 184, 135, 0.3);
+  margin-top: 10vh;
+  min-height: 60vh;
+  width: 100%;
+  padding: 3%;
 }
 
 .home-logo {
@@ -313,4 +325,53 @@ menu {
   background-color: rgb(1, 53, 1, 0.9);
 }
 
+.search-results h1 {
+  font-family: 'Anton', sans-serif;
+  color: rgb(1, 53, 1);
+}
+
+.search-results h2 {
+  font-family: 'Anton', sans-serif;
+  color: rgb(1, 53, 1);
+}
+
+.search-results h3 {
+  font-family: 'Anton', sans-serif;
+  color: rgb(222, 184, 135);
+}
+
+.search-results {
+  border-top: 1px solid rgb(222, 184, 135);
+  border-bottom: 1px solid rgb(222, 184, 135);
+}
+
+.Recipe {
+  background-color: rgb(222, 184, 135, 0.3);
+  padding: 15px;
+  border-bottom: 2px solid rgb(1, 53, 1);
+}
+
+.Recipe h4 {
+  font-family: 'Anton', sans-serif;
+}
+
+.SmallRecipe {
+  background-color: rgb(222, 184, 135, 0.3);
+  padding: 10px;
+  border-bottom: 2px solid rgb(222, 184, 135);
+}
+
+.SmallRecipe h4 {
+  color: rgb(222, 184, 135);
+}
+
+.show-btn {
+  display: inline-block;
+  border: 1px solid rgb(222, 184, 135);
+  color: rgb(222, 184, 135);
+  padding: 5px;
+  border-radius: 0;
+  font-family: 'Varela Round', sans-serif;
+  margin-left: 20px;
+}
 
