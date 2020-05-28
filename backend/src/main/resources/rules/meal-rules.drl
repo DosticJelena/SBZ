@@ -27,12 +27,3 @@ rule "Calculate rating" salience -1
     then
         $recipe.setRating($recipe.getTimesEaten()/maxTimesEaten);
 end
-
-// TODO: kod metode za izlistavanje rezultata pretrage
-rule "RecipeViewedCounterUpdate"
-    agenda-group "recipeSearchResults"
-    when
-        $r: Recipe()
-    then
-        $r.setTimesViewed($r.getTimesViewed() + 1);
-end
