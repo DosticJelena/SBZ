@@ -3,6 +3,7 @@ package backend.model;
 
 import backend.model.enumeration.Gender;
 import backend.model.enumeration.WeightGoal;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -57,6 +58,7 @@ public class UserModel {
     @Column
     private double caloriesThreshold;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
