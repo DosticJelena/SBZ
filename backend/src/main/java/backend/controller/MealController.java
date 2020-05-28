@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.dto.NewMealDTO;
 import backend.model.Ingredient;
 import backend.model.Meal;
 import backend.service.serviceInterface.IngredientService;
@@ -7,10 +8,8 @@ import backend.service.serviceInterface.MealService;
 import backend.service.serviceInterface.RecipeService;
 import backend.service.serviceInterface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,13 +28,13 @@ public class MealController {
     @Autowired
     private RecipeService recipeService;
 
-    @GetMapping(value="", produces = APPLICATION_JSON_VALUE)
-    public String testSave(){
+    @PostMapping(value="/add", consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addMeal(@RequestBody NewMealDTO newMealDTO){
 
         Meal meal = new Meal();
-        meal.setUser(userService.findById(1));
-        meal.setRecipe(recipeService.findById(1));
+        meal.setUser(userService.findByUsername(newMealDTO.getUsername()));
+        meal.setRecipe(recipeService.findByName(newMealDTO.getRecipeName()));
         meal = mealService.save(meal);
-        return meal.getMealTime().toString();
+        return ResponseEntity.ok(meal.getMealTime().toString());
     }
 }
