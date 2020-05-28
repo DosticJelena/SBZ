@@ -85,7 +85,7 @@ public class RecipeServiceImpl implements RecipeService {
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         List<Allergen> allergens = new ArrayList<Allergen>();
         Location location = new Location();
-        if(loc != null){
+        if(loc != null && !loc.equals("")){
             location = locationRepository.findByName(loc);
         }
 
@@ -129,7 +129,7 @@ public class RecipeServiceImpl implements RecipeService {
                     }
                 }
                 if (noAllergicIngredients) {
-                    if(r.getLocation().getName().equals(location.getName())) {
+                    if(r.getLocation().getName().equals(location.getName()) || loc.equals("")) {
                         validRecipes.add(r);
                     } else if(r.getLocation().getContinent().equals(location.getContinent())){
                         continentRecipes.add(r);
