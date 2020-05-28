@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from 'react-notifications';
+
 import FindRecipe from './components/FindRecipe/FindRecipe';
 import PersonalProfile from './components/PersonalProfile/PersonalProfile';
 import HomePage from './components/HomePage/HomePage';
@@ -37,6 +40,8 @@ class App extends React.Component {
             <Register/>
           </Route>
         </Router>
+
+        <NotificationContainer/>
       </div>
     );
   }

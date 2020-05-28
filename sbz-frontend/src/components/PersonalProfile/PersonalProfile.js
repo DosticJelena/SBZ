@@ -31,9 +31,9 @@ class PersonalProfile extends React.Component {
                             <h3>Fitness goal</h3>
                             <br />
                             <p>
-                                <span className={(localStorage.goal == "LOSE") ? "goal active-goal" : "goal"}>LOSE</span>
-                                <span className={(localStorage.goal == "MAINTAIN") ? "goal active-goal" : "goal"}>MAINTAIN</span>
-                                <span className={(localStorage.goal == "GAIN") ? "goal active-goal" : "goal"}>GAIN</span>
+                                <span className={(localStorage.goal === "LOSE") ? "goal active-goal" : "goal"}>LOSE</span>
+                                <span className={(localStorage.goal === "MAINTAIN") ? "goal active-goal" : "goal"}>MAINTAIN</span>
+                                <span className={(localStorage.goal === "GAIN") ? "goal active-goal" : "goal"}>GAIN</span>
                             </p>
                             <p>Recomended calorie & macros intake:</p>
                             <table>

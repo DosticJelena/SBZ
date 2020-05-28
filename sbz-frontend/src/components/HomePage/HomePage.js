@@ -10,7 +10,7 @@ class HomePage extends React.Component {
     render() {
 
         let rightMenuContent;
-        if (localStorage.loggedIn == "true") {
+        if (localStorage.loggedIn === "true") {
             rightMenuContent = <Welcome changeLoggedInStatus={this.props.changeLoggedInStatus} />
         } else {
             rightMenuContent = <Login changeLoggedInStatus={this.props.changeLoggedInStatus} />
