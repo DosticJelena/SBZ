@@ -1,9 +1,10 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
-import {NotificationManager} from 'react-notifications';
+import { NotificationManager } from 'react-notifications';
 
 import logo from '../../../assets/hop.png';
+import SmallModal from '../../UI/Modal/SmallModal';
 
 class Register extends React.Component {
 
@@ -20,12 +21,14 @@ class Register extends React.Component {
             height: '',
             weight: '',
             passwordConfirm: '',
-            goal: ''
+            goal: '',
+            modalVisible: false
         }
     }
 
     SendRegisterRequest = event => {
         event.preventDefault();
+        this.modalHandler();
         console.log(this.state);
         axios.post("http://localhost:8080/users/register", {
             username: this.state.email,
@@ -39,12 +42,20 @@ class Register extends React.Component {
             weightGoal: this.state.goal
 
         })
-        .then((resp) => {
-            console.log(resp.data);
-            this.props.history.push('/');
-        })
-        .catch((error) => {console.log(error.response); NotificationManager.error(error.response.data,"Error!",3000)})
+            .then((resp) => {
+                console.log(resp.data);
+                this.props.history.push('/');
+            })
+            .catch((error) => { this.modalClosedHandler(); console.log(error.response); NotificationManager.error(error.response.data, "Error!", 3000) })
 
+    }
+
+    modalHandler = () => {
+        this.setState({ modalVisible: true });
+    }
+
+    modalClosedHandler = () => {
+        this.setState({ modalVisible: false });
     }
 
     handleChange = e => {
@@ -54,6 +65,9 @@ class Register extends React.Component {
     render() {
         return (
             <div className="Register">
+                <SmallModal show={this.state.modalVisible}>
+                    <h4>Please wait...</h4>
+                </SmallModal>
                 <div className="row">
                     <div className="col-2">
 
