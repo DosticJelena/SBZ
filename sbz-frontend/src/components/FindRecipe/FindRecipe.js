@@ -4,6 +4,8 @@ import logo from '../../assets/hop.png';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import SearchResults from './SearchResults/SearchResults';
+
 class FindRecipe extends React.Component {
 
     constructor(props) {
@@ -12,7 +14,13 @@ class FindRecipe extends React.Component {
             ingredients: [],
             choosenIngredients: [],
             allergens: [],
-            location: ''
+            location: '',
+            validRec: [],
+            continentRec: [],
+            worldRec: [],
+            semiRec: [],
+            ref: null,
+            showSearchResults: false
         }
     }
 
@@ -28,7 +36,7 @@ class FindRecipe extends React.Component {
     }
 
     searchRecipes = () => {
-        axios.post("http://localhost:8080/recipes/search",{
+        axios.post("http://localhost:8080/recipes/search", {
             ingredients: this.state.choosenIngredients,
             allergens: this.state.allergens,
             location: this.state.location,
@@ -36,9 +44,19 @@ class FindRecipe extends React.Component {
         })
             .then((response) => {
                 console.log(response);
+                this.setState({
+                    validRec: response.data.validRecipes,
+                    continentRec: response.data.continentRecipes,
+                    semiRec: response.data.semiValidRecipes,
+                    worldRec: response.data.worldwideRecipes,
+                    showSearchResults: true
+                })
+                this.scrollToMyRef();
             })
             .catch(error => console.log(error))
     }
+
+    scrollToMyRef = () => window.scrollTo(0, this.state.ref.offsetTop)
 
     componentDidMount() {
         axios.get("http://localhost:8080/ingredients")
@@ -90,8 +108,18 @@ class FindRecipe extends React.Component {
                     <div className="step-3 col-md-4 col-12">
                         <h4>Step 3: Find Recipe!</h4>
                         <hr />
-                        <button onClick={this.searchRecipes} className="btn btn-success green-btn">Find Recipes!</button>
+                        <button onClick={this.searchRecipes} className="btn btn-success green-btn">
+                            Find Recipes!
+                        </button>
                     </div>
+                </div>
+                <div className="row" ref={(ref) => this.myRef = ref}>
+                    {this.state.showSearchResults ? <SearchResults
+                        validRec={this.state.validRec}
+                        continentRec={this.state.continentRec}
+                        worldRec={this.state.worldRec}
+                        semiRec={this.state.semiRec}
+                    /> : null}
                 </div>
             </div>
         );

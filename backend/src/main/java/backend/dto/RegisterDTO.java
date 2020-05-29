@@ -1,6 +1,7 @@
 package backend.dto;
 
 import backend.model.Allergen;
+import backend.model.Macronutrients;
 import backend.model.UserModel;
 import backend.model.enumeration.Gender;
 import backend.model.enumeration.WeightGoal;
@@ -35,6 +36,11 @@ public class RegisterDTO {
         user.setWeight(Double.valueOf(weight));
         user.setHeight(Double.valueOf(height));
         user.setCaloriesThreshold(0);
+        Macronutrients macros = new Macronutrients();
+        macros.setCarbs(0);
+        macros.setProtein(0);
+        macros.setFat(0);
+        user.setMacros(macros);
 
         if (gender.equals("0")) {
             user.setGender(Gender.FEMALE);

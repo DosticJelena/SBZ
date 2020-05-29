@@ -38,7 +38,7 @@ class PersonalProfile extends React.Component {
                             <p>Recomended calorie & macros intake:</p>
                             <table>
                                 <tr><td>Calories</td><td>Carbs</td><td>Protein</td><td>Fat</td></tr>
-                                <tr><td>{localStorage.calories}</td><td>123</td><td>123</td><td>23</td></tr>
+                                <tr><td>{parseInt(localStorage.calories)}</td><td>123</td><td>123</td><td>23</td></tr>
                             </table>
                         </div>
                     </div>

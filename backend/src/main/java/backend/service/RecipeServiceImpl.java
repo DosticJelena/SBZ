@@ -113,21 +113,24 @@ public class RecipeServiceImpl implements RecipeService {
                     }
                 }
                 if (noAllergicIngredients) {
-                    if(r.getLocation().getName().equals(location.getName()) || loc.equals("")) {
-                        KieContainer kc = KnowledgeSessionHelper.createRuleBase();
-                        KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "recipes-rules");
+                    KieContainer kc = KnowledgeSessionHelper.createRuleBase();
+                    KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "recipes-rules");
 
-                        kSession.insert(r);
+                    kSession.insert(r);
 
-                        kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
-                        kSession.fireAllRules();
-                        recipeRepository.save(r);
-
-                        validRecipes.add(r);
-                    } else if(r.getLocation().getContinent().equals(location.getContinent())){
-                        continentRecipes.add(r);
+                    kSession.getAgenda().getAgendaGroup("recipeSearchResults").setFocus();
+                    kSession.fireAllRules();
+                    recipeRepository.save(r);
+                    if(!loc.equals("")) {
+                        if(r.getLocation().getName().equals(location.getName())) {
+                            validRecipes.add(r);
+                        } else if(r.getLocation().getContinent().equals(location.getContinent())){
+                            continentRecipes.add(r);
+                        } else {
+                            worldwideRecipes.add(r);
+                        }
                     } else {
-                        worldwideRecipes.add(r);
+                        validRecipes.add(r);
                     }
                 }
             }

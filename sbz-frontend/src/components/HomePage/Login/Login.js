@@ -22,6 +22,7 @@ class Login extends React.Component {
             password: this.state.password
         })
             .then((response) => {
+                localStorage.setItem('loggedIn', true);
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('firstName', response.data.firstName);
@@ -31,7 +32,6 @@ class Login extends React.Component {
                 localStorage.setItem('height', response.data.height);
                 localStorage.setItem('calories', response.data.caloriesThreshold);
                 localStorage.setItem('goal', response.data.weightGoal);
-                localStorage.setItem('loggedIn', true);
                 console.log(localStorage);
             })
             .catch((error) => NotificationManager.error(error.response.data,"Error!",3000))
