@@ -186,6 +186,11 @@ menu {
   background-color: rgb(222, 184, 135, 0.3);
 }
 
+.dropdown-menu {
+  max-height: 250px;
+  overflow: auto;
+}
+
 .ing-dropdown {
   background-color: rgb(86,39,59,0.7);
   border: 1px rgb(86,39,59) solid;
@@ -349,6 +354,13 @@ menu {
   background-color: rgb(222, 184, 135, 0.3);
   padding: 15px;
   border-bottom: 2px solid rgb(1, 53, 1);
+  margin-top:20px;
+  margin-right: 15px;
+}
+
+.Recipe:hover {
+  background-color: rgb(222, 184, 135, 0.4);
+  cursor: pointer;
 }
 
 .Recipe h4 {
@@ -359,6 +371,12 @@ menu {
   background-color: rgb(222, 184, 135, 0.3);
   padding: 10px;
   border-bottom: 2px solid rgb(222, 184, 135);
+  margin-top: 20px;
+}
+
+.SmallRecipe:hover {
+  background-color: rgb(222, 184, 135, 0.4);
+  cursor: pointer;
 }
 
 .SmallRecipe h4 {
