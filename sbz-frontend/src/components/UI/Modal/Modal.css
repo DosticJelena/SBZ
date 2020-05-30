@@ -49,3 +49,8 @@
     font-family: 'Anton', sans-serif;
     color: rgb(222, 184, 135);
 }
+
+.Modal .ingredients {
+    overflow: auto;
+    max-height: 250px;
+}
