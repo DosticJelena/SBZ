@@ -1,11 +1,10 @@
 package backend.service;
 
 import backend.kie.util.KnowledgeSessionHelper;
-import backend.model.Macronutrients;
 import backend.model.UserModel;
+import backend.model.Macronutrients;
 import backend.repository.UserRepository;
 import backend.service.serviceInterface.UserService;
-import org.apache.catalina.User;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;

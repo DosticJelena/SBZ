@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,14 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    @GetMapping(value="/")
+    @GetMapping(value="")
     public List<Recipe> getAllRecipes(){
         return recipeService.findAll();
+    }
+
+    @GetMapping(value="/{id}", consumes = APPLICATION_JSON_VALUE)
+    public Recipe getById(@PathVariable String id){
+        return recipeService.findById(Long.valueOf(id));
     }
 
     @PostMapping(value="/search", produces = APPLICATION_JSON_VALUE)
