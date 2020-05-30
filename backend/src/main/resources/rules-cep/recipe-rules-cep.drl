@@ -1,0 +1,20 @@
+import backend.model.Recipe;
+import backend.events.MidnightEvent;
+import backend.model.UserModel
+
+rule "Set Daily Statuses"
+agenda-group "midnight-events"
+    when
+        $m : MidnightEvent()
+        $u : UserModel()
+    then
+        System.out.println($u.getUsername());
+end
+
+rule "Set Daily Statusesfdhhdgggh"
+agenda-group "midnight-events"
+    when
+        $m : MidnightEvent()
+    then
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+end

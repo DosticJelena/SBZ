@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.dto.RecipeDTO;
 import backend.dto.SearchParametersDTO;
 import backend.model.Allergen;
 import backend.model.Ingredient;
@@ -30,8 +31,9 @@ public class RecipeController {
     }
 
     @GetMapping(value="/{id}", consumes = APPLICATION_JSON_VALUE)
-    public Recipe getById(@PathVariable String id){
-        return recipeService.findById(Long.valueOf(id));
+    public RecipeDTO getById(@PathVariable String id){
+        RecipeDTO rdto = new RecipeDTO(recipeService.findById(Long.valueOf(id)));
+        return rdto;
     }
 
     @PostMapping(value="/search", produces = APPLICATION_JSON_VALUE)
