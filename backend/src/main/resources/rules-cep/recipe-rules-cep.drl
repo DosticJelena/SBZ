@@ -15,6 +15,7 @@ agenda-group "midnight-events"
     when
         $m : MidnightEvent()
         $u : UserModel()
+        
     then
         System.out.println($u.getDailyStatuses());
         Timestamp today = new Timestamp(System.currentTimeMillis());
@@ -24,7 +25,7 @@ agenda-group "midnight-events"
             Calendar dsCal = Calendar.getInstance();
             dsCal.setTimeInMillis(ds.getDate().getTime());
             if(cal.get(Calendar.YEAR) == dsCal.get(Calendar.YEAR) && cal.get(Calendar.MONTH) == dsCal.get(Calendar.MONTH)
-                        && cal.get(Calendar.DAY_OF_MONTH) - 1 == dsCal.get(Calendar.DAY_OF_MONTH)){
+                        && cal.get(Calendar.DAY_OF_MONTH) == dsCal.get(Calendar.DAY_OF_MONTH)){
                 if(ds.getMacros().getCalories() < $u.getCaloriesThreshold() - 200){
                     ds.setStatus(GoodBadStatus.AMAZING);
                 }else if(ds.getMacros().getCalories() <= $u.getCaloriesThreshold()){

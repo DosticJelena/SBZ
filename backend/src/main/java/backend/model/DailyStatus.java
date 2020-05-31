@@ -39,7 +39,7 @@ public class DailyStatus {
     private GoodBadStatus status;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
 

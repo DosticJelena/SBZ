@@ -22,7 +22,11 @@ public class Allergen {
     @Column
     private String name;
 
-    @ManyToMany(mappedBy = "userAllergens", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "allergen_user",
+            joinColumns = @JoinColumn(name = "allergen_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<UserModel> users;
 
     @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

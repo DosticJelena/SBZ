@@ -6,6 +6,7 @@ import backend.kie.util.KnowledgeSessionHelper;
 import backend.model.DailyStatus;
 import backend.model.Macronutrients;
 import backend.model.UserModel;
+import backend.model.enumeration.GoodBadStatus;
 import backend.repository.DailyStatusRepository;
 import backend.repository.UserRepository;
 import org.apache.catalina.User;
@@ -35,17 +36,17 @@ public class ScheduledTasks {
 
     @Scheduled(cron = "30 * * * * *")
     public void struckMidnight(){
-//
+
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
         KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "cep-rules");
         List<UserModel> userModels= new ArrayList<UserModel>();
         for(UserModel u: userRepository.findAll()){
             DailyStatus ds = new DailyStatus();
+            ds.setStatus(GoodBadStatus.OKAY);
             ds.setDate(new Timestamp(System.currentTimeMillis()));
-            ds.setUser(u);
             ds.setMacros(new Macronutrients());
+            ds.setUser(u);
             dailyStatusRepository.save(ds);
-            userRepository.save(u);
             kSession.insert(u);
             userModels.add(u);
         }
@@ -55,7 +56,8 @@ public class ScheduledTasks {
         kSession.insert(new MidnightEvent());
         kSession.fireAllRules();
 
-        for(UserModel u: userModels)
+        for(UserModel u: userModels) {
             userRepository.save(u);
+        }
     }
 }

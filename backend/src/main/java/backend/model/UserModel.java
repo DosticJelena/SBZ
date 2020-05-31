@@ -49,11 +49,7 @@ public class UserModel {
     @Column
     private Gender gender;
 
-    @ManyToMany
-    @JoinTable(
-            name = "allergen_user",
-            joinColumns = @JoinColumn(name = "allergen_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Allergen> userAllergens;
 
     @Column
@@ -68,7 +64,7 @@ public class UserModel {
     private WeightGoal weightGoal;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<DailyStatus> dailyStatuses;
 
 }
