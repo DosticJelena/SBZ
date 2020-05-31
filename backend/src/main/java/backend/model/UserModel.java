@@ -3,6 +3,7 @@ package backend.model;
 
 import backend.model.enumeration.Gender;
 import backend.model.enumeration.WeightGoal;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -65,5 +66,9 @@ public class UserModel {
 
     @Column
     private WeightGoal weightGoal;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<DailyStatus> dailyStatuses;
 
 }

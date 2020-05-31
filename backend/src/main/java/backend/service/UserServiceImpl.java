@@ -1,8 +1,10 @@
 package backend.service;
 
 import backend.kie.util.KnowledgeSessionHelper;
+import backend.model.DailyStatus;
 import backend.model.UserModel;
 import backend.model.Macronutrients;
+import backend.repository.DailyStatusRepository;
 import backend.repository.UserRepository;
 import backend.service.serviceInterface.UserService;
 import org.kie.api.runtime.KieContainer;
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private DailyStatusRepository dailyStatusRepository;
+
     @Override
     public UserModel findById(long id){
         return userRepository.findById(id);
@@ -31,6 +36,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> findAll(){
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<DailyStatus> findAllDailyStatuses(long id) {
+       return dailyStatusRepository.findByUserId(id);
     }
 
     @Override

@@ -38,6 +38,18 @@ class SearchResults extends React.Component {
         this.setState({ modalVisible: false });
     }
 
+    eatRecipeRequest = () => {
+        axios.post("http://localhost:8080/meals/add", {
+            username: localStorage.username,
+            recipeName: this.state.recipe.name
+        })
+            .then((response) => {
+                console.log(response.data);
+                this.modalClosedHandler();
+            })
+            .catch(error => console.log(error))
+    }
+
     getRecipe = (recipeId) => {
         let url = "http://localhost:8080/recipes/" + recipeId;
         axios.get(url, { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, data: {} })
@@ -61,6 +73,9 @@ class SearchResults extends React.Component {
                     <div className="col">
                         <h3>Ingredients</h3>
                         <hr />
+                        <div className="ingredients">
+                            {this.state.recipe.ingredients.map(ing => <p>- {ing}</p>)}
+                        </div>
                     </div>
                     <div className="col">
                         <h3>Details</h3>
@@ -86,7 +101,7 @@ class SearchResults extends React.Component {
                         <h5><span className="modal-span">Times Eaten:</span> {this.state.recipe.timesEaten}</h5>
                     </div>
                     <div className="col">
-                        <button className="btn modal-btn">Eat Recipe!</button>
+                        <button onClick={this.eatRecipeRequest} disabled={localStorage.username === null} className="btn modal-btn">Eat Recipe!</button>
                     </div>
                 </div>
             </Modal>;

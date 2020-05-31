@@ -17,7 +17,7 @@
         <ksession name="user-rules"/>
     </kbase>
 
-    <kbase name="ceprules" packages="cep">
+    <kbase name="recipescep" packages="rules-cep">
         <ksession name="cep-rules"/>
     </kbase>
 

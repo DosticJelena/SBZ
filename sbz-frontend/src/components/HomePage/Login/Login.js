@@ -16,7 +16,6 @@ class Login extends React.Component {
 
     SendLoginRequest = event => {
         event.preventDefault();
-        this.props.changeLoggedInStatus();
         axios.post("http://localhost:8080/users/login", {
             username: this.state.email,
             password: this.state.password
@@ -32,6 +31,7 @@ class Login extends React.Component {
                 localStorage.setItem('height', response.data.height);
                 localStorage.setItem('calories', response.data.caloriesThreshold);
                 localStorage.setItem('goal', response.data.weightGoal);
+                this.props.changeLoggedInStatus();
                 console.log(localStorage);
             })
             .catch((error) => NotificationManager.error(error.response.data,"Error!",3000))

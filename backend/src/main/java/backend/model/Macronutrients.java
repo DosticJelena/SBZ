@@ -41,6 +41,10 @@ public class Macronutrients {
     @OneToOne(mappedBy = "macros")
     private UserModel user;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "macros")
+    private DailyStatus dailyStatus;
+
     @Override
     public String toString() {
         return "Macronutrients{" +
