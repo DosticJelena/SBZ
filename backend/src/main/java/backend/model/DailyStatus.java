@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mvel2.Macro;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -38,8 +39,13 @@ public class DailyStatus {
     private GoodBadStatus status;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
+
+    public DailyStatus(Timestamp date){
+        this.date = date;
+        this.macros = new Macronutrients();
+    }
 
 }

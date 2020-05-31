@@ -1,6 +1,14 @@
 import backend.model.Recipe;
 import backend.events.MidnightEvent;
 import backend.model.UserModel
+import backend.model.DailyStatus
+import java.util.Date
+import java.sql.Timestamp
+import java.util.Set
+import java.util.Collection
+import java.util.Collections
+import java.util.Calendar
+import backend.model.enumeration.GoodBadStatus
 
 rule "Set Daily Statuses"
 agenda-group "midnight-events"
@@ -8,13 +16,24 @@ agenda-group "midnight-events"
         $m : MidnightEvent()
         $u : UserModel()
     then
-        System.out.println($u.getUsername());
-end
-
-rule "Set Daily Statusesfdhhdgggh"
-agenda-group "midnight-events"
-    when
-        $m : MidnightEvent()
-    then
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println($u.getDailyStatuses());
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(today.getTime());
+        for(DailyStatus ds: $u.getDailyStatuses()){
+            Calendar dsCal = Calendar.getInstance();
+            dsCal.setTimeInMillis(ds.getDate().getTime());
+            if(cal.get(Calendar.YEAR) == dsCal.get(Calendar.YEAR) && cal.get(Calendar.MONTH) == dsCal.get(Calendar.MONTH)
+                        && cal.get(Calendar.DAY_OF_MONTH) - 1 == dsCal.get(Calendar.DAY_OF_MONTH)){
+                if(ds.getMacros().getCalories() < $u.getCaloriesThreshold() - 200){
+                    ds.setStatus(GoodBadStatus.AMAZING);
+                }else if(ds.getMacros().getCalories() <= $u.getCaloriesThreshold()){
+                    ds.setStatus(GoodBadStatus.GOOD);
+                }else if(ds.getMacros().getCalories() <= $u.getCaloriesThreshold() + 200){
+                    ds.setStatus(GoodBadStatus.BAD);
+                } else {
+                    ds.setStatus(GoodBadStatus.TERRIBLE);
+                }
+            }
+        }
 end
