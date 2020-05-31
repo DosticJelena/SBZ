@@ -42,10 +42,12 @@ public class ScheduledTasks {
         for(UserModel u: userRepository.findAll()){
             DailyStatus ds = new DailyStatus();
             ds.setDate(new Timestamp(System.currentTimeMillis()));
+            ds.setUser(u);
             ds.setMacros(new Macronutrients());
-            u.getDailyStatuses().add(ds);
+            dailyStatusRepository.save(ds);
             userRepository.save(u);
             kSession.insert(u);
+            userModels.add(u);
         }
 
 
