@@ -22,7 +22,7 @@ public class Allergen {
     @Column
     private String name;
 
-    @ManyToMany(mappedBy = "userAllergens")
+    @ManyToMany(mappedBy = "userAllergens", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<UserModel> users;
 
     @ManyToMany(mappedBy = "allergens", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

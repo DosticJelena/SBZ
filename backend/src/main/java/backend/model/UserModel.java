@@ -68,7 +68,7 @@ public class UserModel {
     private WeightGoal weightGoal;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<DailyStatus> dailyStatuses;
 
 }
