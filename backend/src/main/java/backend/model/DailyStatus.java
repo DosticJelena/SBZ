@@ -13,6 +13,7 @@ import org.mvel2.Macro;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -33,7 +34,7 @@ public class DailyStatus {
     private UserModel user;
 
     @Column
-    private Timestamp date;
+    private LocalDateTime date;
 
     @Column
     private GoodBadStatus status;
@@ -43,9 +44,14 @@ public class DailyStatus {
     @JoinColumn(name = "macros_id", referencedColumnName = "id")
     private Macronutrients macros;
 
-    public DailyStatus(Timestamp date){
-        this.date = date;
-        this.macros = new Macronutrients();
-    }
 
+    @Override
+    public String toString() {
+        return "DailyStatus{" +
+                "id=" + id +
+                ", user=" + user +
+                ", date=" + date +
+                ", status=" + status +
+                '}';
+    }
 }

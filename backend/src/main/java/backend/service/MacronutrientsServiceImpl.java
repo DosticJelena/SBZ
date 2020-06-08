@@ -20,6 +20,11 @@ public class MacronutrientsServiceImpl implements MacronutrientsService {
     }
 
     @Override
+    public Macronutrients findByUserId(long userId) {
+        return macronutrientsRepository.findByUserId(userId);
+    }
+
+    @Override
     public List<Macronutrients> findAll(){
         return macronutrientsRepository.findAll();
     }

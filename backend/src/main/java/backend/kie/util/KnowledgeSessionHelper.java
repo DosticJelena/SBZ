@@ -9,7 +9,7 @@ public class KnowledgeSessionHelper {
 
     public static KieContainer createRuleBase() {
         KieServices ks = KieServices.Factory.get();
-        KieContainer kieContainer = ks.getKieClasspathContainer();
+        KieContainer kieContainer = ks.newKieClasspathContainer();
         return kieContainer;
     }
 

@@ -1,0 +1,29 @@
+package resources.rules;
+import backend.model.Recipe;
+import backend.model.Meal;
+
+rule "Set popularity_HIGH" 
+when
+    $r: Recipe($r.getTimesEaten > 6,
+    			$r.getTimesEaten <= 10)
+then
+    $r.setPopularity(Recipe.Popularity.HIGH);
+end
+
+rule "Set popularity_MEDIUM" 
+when
+    $r: Recipe($r.getTimesEaten > 3,
+    			$r.getTimesEaten <= 6)
+then
+    $r.setPopularity(Recipe.Popularity.MEDIUM);
+end
+
+rule "Set popularity_LOW" 
+when
+    $r: Recipe($r.getTimesEaten > 0,
+    			$r.getTimesEaten <= 3)
+then
+    $r.setPopularity(Recipe.Popularity.LOW);
+end
+
+

@@ -209,8 +209,15 @@ insert into ingredient_recipe (ingredient_id, recipe_id) values (23,21);
 insert into ingredient_recipe (ingredient_id, recipe_id) values (24,21);
 
 
+insert into macronutrients (calories, protein, carbs, fat) values(200000,0,0,0);
+insert into macronutrients (calories, protein, carbs, fat) values(0,0,0,0);
+
+insert into macronutrients (calories, protein, carbs, fat) values(2100,100,50,30);
+insert into macronutrients (calories, protein, carbs, fat) values(2000,90,50,30);
+
+insert into user_model (first_name, last_name, age, username, password, calories_threshold, height, weight, gender, weight_goal, macros_id) values ('First', 'Last', 23, 'username_test', 'pass_test', 2100, 170, 65, 0, 1,24);
+insert into user_model (first_name, last_name, age, username, password, calories_threshold, height, weight, gender, weight_goal, macros_id) values ('Second', 'Last', 24, 'username_test2', 'pass_test', 2000, 168, 57, 1, 2, 25);
 
 
-
-insert into user_model (first_name, last_name, age, username, password, calories_threshold, height, weight, gender, weight_goal) values ('First', 'Last', 23, 'username_test', 'pass_test', 2100, 170, 65, 0, 1);
-insert into user_model (first_name, last_name, age, username, password, calories_threshold, height, weight, gender, weight_goal) values ('Second', 'Last', 24, 'username_test2', 'pass_test', 2000, 168, 57, 1, 2);
+insert into daily_status (user_id, date, macros_id, status) values (1,'2020-06-07 12:12:12',22,2);
+insert into daily_status (user_id, date, macros_id, status) values (2,'2020-06-07 12:12:12',23,2);

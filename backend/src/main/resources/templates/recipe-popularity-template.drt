@@ -1,0 +1,22 @@
+template header
+minTimesEaten
+maxTimesEaten
+newCategory
+
+package resources.rules;
+
+import backend.model.Recipe;
+import backend.model.Meal;
+
+template "template-rules"
+
+rule "Set popularity_@{newCategory}" 
+when
+    $r: Recipe($r.getTimesEaten > @{minTimesEaten},
+    			$r.getTimesEaten <= @{maxTimesEaten})
+then
+    $r.setPopularity(Recipe.Popularity.@{newCategory});
+end
+
+end template
+

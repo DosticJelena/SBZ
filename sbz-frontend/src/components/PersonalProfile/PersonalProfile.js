@@ -1,10 +1,20 @@
 import React from 'react';
 import logo from '../../assets/hop.png';
+import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 import CalorieTracking from './CalorieTracking/CalorieTracking';
 
 class PersonalProfile extends React.Component {
+
+    componentDidMount() {
+        console.log(localStorage.id);
+        axios.get("http://localhost:8080/macronutrients/" + localStorage.id)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(error => console.log(error))
+    }
 
     render() {
         return (

@@ -35,6 +35,6 @@ public class MealController {
         meal.setUser(userService.findByUsername(newMealDTO.getUsername()));
         meal.setRecipe(recipeService.findByName(newMealDTO.getRecipeName()));
         meal = mealService.save(meal);
-        return ResponseEntity.ok(meal.getMealTime().toString());
+        return ResponseEntity.ok(meal.getRecipe());
     }
 }

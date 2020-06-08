@@ -2,7 +2,7 @@ import backend.model.Meal;
 import backend.model.Recipe;
 import java.sql.Timestamp;
 
-global Long maxTimesEaten;
+global Double maxTimesEaten;
 
 rule "AddDateToMeal"
     agenda-group "eatenMeals"
@@ -26,4 +26,15 @@ rule "Calculate rating" salience -1
         $m: Meal($recipe: recipe)
     then
         $recipe.setRating($recipe.getTimesEaten()/maxTimesEaten);
+        System.out.println(maxTimesEaten);
+        System.out.println($recipe.getName() + " " + $recipe.getTimesEaten() + " " + $recipe.getRating());
+end
+
+rule "Updating All Ratings"
+    agenda-group "popularRecipe"
+    when
+        $recipe: Recipe()
+    then
+        $recipe.setRating($recipe.getTimesEaten()/maxTimesEaten);
+        System.out.println($recipe.getName() + " " + $recipe.getTimesEaten() + " " + $recipe.getRating());
 end

@@ -2,6 +2,7 @@ package backend.model;
 
 
 import backend.model.enumeration.Gender;
+import backend.model.enumeration.GoodBadStatus;
 import backend.model.enumeration.WeightGoal;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -66,5 +67,13 @@ public class UserModel {
     @JsonBackReference
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<DailyStatus> dailyStatuses;
+
+    public void updateDailyStatus(long id, GoodBadStatus status) {
+        for(DailyStatus ds : this.dailyStatuses){
+            if (ds.getId() == id){
+                ds.setStatus(status);
+            }
+        }
+    }
 
 }

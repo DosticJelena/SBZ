@@ -48,12 +48,13 @@ public class MealServiceImpl implements MealService {
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
         KieSession kSession = KnowledgeSessionHelper.getStatefulKnowledgeSession(kc, "meals-rules");
 
-        long maxTimesEaten = 1;
+        double maxTimesEaten = 1.0;
         for(Recipe r: recipeRepository.findAll()){
             if(maxTimesEaten < r.getTimesEaten()){
                 maxTimesEaten = r.getTimesEaten();
             }
         }
+
 
         kSession.setGlobal("maxTimesEaten", maxTimesEaten);
 
@@ -62,7 +63,26 @@ public class MealServiceImpl implements MealService {
         kSession.insert(meal);
         kSession.fireAllRules();
 
-        return mealRepository.save(meal);
+        mealRepository.save(meal);
+        if(meal.getRecipe().getTimesEaten() >= maxTimesEaten){
+            maxTimesEaten = meal.getRecipe().getTimesEaten();
+            kSession.setGlobal("maxTimesEaten", maxTimesEaten);
+
+            kSession.getAgenda().getAgendaGroup("popularRecipe").setFocus();
+
+            List<Recipe> recipeList = recipeRepository.findAll();
+            for(Recipe r: recipeList){
+                kSession.insert(r);
+            }
+
+            kSession.fireAllRules();
+
+            for(Recipe r : recipeList) {
+                recipeRepository.save(r);
+            }
+        }
+        return meal;
+
     }
 
     @Override

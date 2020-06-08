@@ -2,6 +2,7 @@ import backend.model.Recipe;
 import backend.events.MidnightEvent;
 import backend.model.UserModel
 import backend.model.DailyStatus
+import backend.model.Macronutrients
 import java.util.Date
 import java.sql.Timestamp
 import java.util.Set
@@ -9,32 +10,81 @@ import java.util.Collection
 import java.util.Collections
 import java.util.Calendar
 import backend.model.enumeration.GoodBadStatus
+import java.util.List
+import java.time.LocalDateTime
+import java.time.LocalDate
+
+global LocalDate yesterday;
+
+declare SetStatusEvent
+    @role(event)
+    dailyCals : double
+    dailyS : DailyStatus
+    userId : long
+end
 
 rule "Set Daily Statuses"
 agenda-group "midnight-events"
     when
         $m : MidnightEvent()
-        $u : UserModel()
-        
+        $u : UserModel($dss : dailyStatuses)
+
+        $y : List( size > 0 ) from accumulate (
+            $ds: DailyStatus($date: date, $date.toLocalDate() == yesterday) from $dss,
+            collectList($ds)
+        )
     then
-        System.out.println($u.getDailyStatuses());
-        Timestamp today = new Timestamp(System.currentTimeMillis());
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(today.getTime());
-        for(DailyStatus ds: $u.getDailyStatuses()){
-            Calendar dsCal = Calendar.getInstance();
-            dsCal.setTimeInMillis(ds.getDate().getTime());
-            if(cal.get(Calendar.YEAR) == dsCal.get(Calendar.YEAR) && cal.get(Calendar.MONTH) == dsCal.get(Calendar.MONTH)
-                        && cal.get(Calendar.DAY_OF_MONTH) == dsCal.get(Calendar.DAY_OF_MONTH)){
-                if(ds.getMacros().getCalories() < $u.getCaloriesThreshold() - 200){
-                    ds.setStatus(GoodBadStatus.AMAZING);
-                }else if(ds.getMacros().getCalories() <= $u.getCaloriesThreshold()){
-                    ds.setStatus(GoodBadStatus.GOOD);
-                }else if(ds.getMacros().getCalories() <= $u.getCaloriesThreshold() + 200){
-                    ds.setStatus(GoodBadStatus.BAD);
-                } else {
-                    ds.setStatus(GoodBadStatus.TERRIBLE);
-                }
-            }
-        }
+        DailyStatus dssss = (DailyStatus) $y.get(0);
+        double cals = dssss.getMacros().getCalories();
+        insert(new SetStatusEvent(cals, dssss, $u.getId()));
+end
+
+rule "Set status amazing"
+agenda-group "midnight-events"
+    when
+        $u : UserModel($thr : caloriesThreshold, $uId: id)
+        SetStatusEvent($ds : dailyS, $cals: dailyCals, $userId: userId, $uId == $userId, $cals < $thr - 200)
+    then
+        System.out.println($cals);
+        $u.updateDailyStatus($ds.getId(),GoodBadStatus.AMAZING);
+end
+
+rule "Set status good"
+agenda-group "midnight-events"
+    when
+        $u : UserModel($thr : caloriesThreshold, $uId: id)
+        SetStatusEvent($ds : dailyS, $cals: dailyCals, $userId: userId, $uId == $userId, $cals >= $thr - 200, $cals < $thr - 100)
+    then
+        System.out.println($cals);
+        $u.updateDailyStatus($ds.getId(),GoodBadStatus.GOOD);
+end
+
+rule "Set status ok"
+agenda-group "midnight-events"
+    when
+        $u : UserModel($thr : caloriesThreshold, $uId: id)
+        SetStatusEvent($ds : dailyS, $cals: dailyCals, $userId: userId, $uId == $userId, $cals >= $thr - 100, $cals < $thr+100)
+    then
+        System.out.println($cals);
+        $u.updateDailyStatus($ds.getId(),GoodBadStatus.OKAY);
+end
+
+rule "Set status bad"
+agenda-group "midnight-events"
+    when
+        $u : UserModel($thr : caloriesThreshold, $uId: id)
+        SetStatusEvent($ds : dailyS, $cals: dailyCals, $userId: userId, $uId == $userId, $cals >= $thr + 100, $cals < $thr + 200)
+    then
+        System.out.println($cals);
+        $u.updateDailyStatus($ds.getId(),GoodBadStatus.BAD);
+end
+
+rule "Set status terrible"
+agenda-group "midnight-events"
+    when
+        $u : UserModel($thr : caloriesThreshold, $uId: id)
+        SetStatusEvent($ds : dailyS, $cals: dailyCals, $userId: userId, $uId == $userId, $cals >= $thr + 200)
+    then
+        System.out.println($cals);
+        $u.updateDailyStatus($ds.getId(),GoodBadStatus.TERRIBLE);
 end

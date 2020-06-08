@@ -19,6 +19,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class ScheduledTasks {
     @Autowired
     private DailyStatusRepository dailyStatusRepository;
 
-    @Scheduled(cron = "30 * * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void struckMidnight(){
 
         KieContainer kc = KnowledgeSessionHelper.createRuleBase();
@@ -43,14 +45,19 @@ public class ScheduledTasks {
         for(UserModel u: userRepository.findAll()){
             DailyStatus ds = new DailyStatus();
             ds.setStatus(GoodBadStatus.OKAY);
-            ds.setDate(new Timestamp(System.currentTimeMillis()));
+            ds.setDate(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
             ds.setMacros(new Macronutrients());
             ds.setUser(u);
             dailyStatusRepository.save(ds);
-            kSession.insert(u);
             userModels.add(u);
         }
 
+        for(UserModel u: userModels){
+            kSession.insert(u);
+        }
+        Timestamp tms = new Timestamp(System.currentTimeMillis());
+        LocalDate today = tms.toLocalDateTime().toLocalDate();
+        kSession.setGlobal("yesterday",today.minusDays(1));
 
         kSession.getAgenda().getAgendaGroup("midnight-events").setFocus();
         kSession.insert(new MidnightEvent());
