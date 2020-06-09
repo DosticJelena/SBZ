@@ -9,6 +9,7 @@ import FindRecipe from './components/FindRecipe/FindRecipe';
 import PersonalProfile from './components/PersonalProfile/PersonalProfile';
 import HomePage from './components/HomePage/HomePage';
 import Register from './components/HomePage/Register/Register';
+import TemplateDRL from './components/TemplateDRL/TemplateDRL';
 
 class App extends React.Component {
 
@@ -32,6 +33,9 @@ class App extends React.Component {
           </Route>
           <Route exact path="/blend">
             <FindRecipe />
+          </Route>
+          <Route exact path="/template">
+            <TemplateDRL />
           </Route>
           <Route exact path="/profile">
             <PersonalProfile />

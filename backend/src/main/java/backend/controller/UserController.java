@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -52,6 +53,17 @@ public class UserController {
     @GetMapping(value="/users-daily-statuses/{id}", produces= APPLICATION_JSON_VALUE)
     private List<DailyStatus> getUsersDailyStatuses(@PathVariable("id") long id){
         return userService.findAllDailyStatuses(id);
+    }
+
+    @GetMapping(value="/todayStatus/{id}")
+    public ResponseEntity<?> getTodaysDailyStatus(@PathVariable("id") long id) {
+        for (DailyStatus ds : userService.findById(id).getDailyStatuses()) {
+            Timestamp tms = new Timestamp(System.currentTimeMillis());
+            if (ds.getDate().equals(tms.toLocalDateTime().toLocalDate())) {
+                return ResponseEntity.ok(ds);
+            }
+        }
+        return ResponseEntity.ok("Didnt find todays dailystatus!");
     }
 
 }

@@ -43,7 +43,8 @@ class HomePage extends React.Component {
                 </header>
                 <menu>
                     <div className="menu-content">
-                        <Link to="/blend"><h4>FindRecipe</h4></Link>
+                        <Link to="/blend"><h4>Find Recipe</h4></Link>
+                        <Link to="/template"><h4>Drools template</h4></Link>
                     </div>
                 </menu>
             </div>

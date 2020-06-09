@@ -393,3 +393,12 @@ menu {
   margin-left: 20px;
 }
 
+.template {
+  padding: 50px;
+  color: rgb(222, 184, 135);
+}
+
+.template input {
+  width: 100px;
+}
+

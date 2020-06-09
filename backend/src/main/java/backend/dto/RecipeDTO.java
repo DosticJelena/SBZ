@@ -26,6 +26,7 @@ public class RecipeDTO {
     private long timesEaten;
     private long timesViewed;
     private double rating;
+    private String popularity;
     private List<String> ingredients = new ArrayList<String>();
 
     public RecipeDTO(Recipe r){
@@ -35,6 +36,7 @@ public class RecipeDTO {
         timesEaten = r.getTimesEaten();
         timesViewed = r.getTimesViewed();
         rating = r.getRating();
+        popularity = r.getPopularity().toString();
         for(Ingredient ing : r.getIngredients()){
             ingredients.add(ing.getName());
         }

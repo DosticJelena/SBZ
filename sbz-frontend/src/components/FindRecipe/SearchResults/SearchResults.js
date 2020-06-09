@@ -96,11 +96,15 @@ class SearchResults extends React.Component {
                 </div>
                 <hr />
                 <div className="row">
-                    <div className="col">
+                    <div className="col-3">
                         <h5><span className="modal-span">Times Viewed:</span> {this.state.recipe.timesViewed}</h5>
                         <h5><span className="modal-span">Times Eaten:</span> {this.state.recipe.timesEaten}</h5>
                     </div>
-                    <div className="col">
+                    <div className="col-3">
+                        <h5><span className="modal-span">Popularity:</span> {this.state.recipe.popularity}</h5>
+                        <h5><span className="modal-span">Rating:</span> {this.state.recipe.rating}</h5>
+                    </div>
+                    <div className="col-6">
                         <button onClick={this.eatRecipeRequest} disabled={localStorage.username === null} className="btn modal-btn">Eat Recipe!</button>
                     </div>
                 </div>

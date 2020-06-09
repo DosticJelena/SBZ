@@ -7,11 +7,31 @@ import CalorieTracking from './CalorieTracking/CalorieTracking';
 
 class PersonalProfile extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            macros: {
+                protein: 0,
+                carbs: 0,
+                fat: 0
+            },
+            calories: 0
+        }
+    }
+
     componentDidMount() {
         console.log(localStorage.id);
         axios.get("http://localhost:8080/macronutrients/" + localStorage.id)
             .then((response) => {
                 console.log(response);
+                this.setState({
+                    macros: {
+                        protein: response.data.protein,
+                        carbs: response.data.carbs,
+                        fat: response.data.fat
+                    },
+                    calories: response.data.calories
+                })
             })
             .catch(error => console.log(error))
     }
@@ -48,13 +68,13 @@ class PersonalProfile extends React.Component {
                             <p>Recomended calorie & macros intake:</p>
                             <table>
                                 <tr><td>Calories</td><td>Carbs</td><td>Protein</td><td>Fat</td></tr>
-                                <tr><td>{parseInt(localStorage.calories)}</td><td>123</td><td>123</td><td>23</td></tr>
+                                <tr><td>{parseInt(localStorage.calories)}</td><td>{this.state.macros.carbs}</td><td>{this.state.macros.protein}</td><td>{this.state.macros.fat}</td></tr>
                             </table>
                         </div>
                     </div>
                     <div className="col-2"></div>
                     <div className="col-6">
-                        <CalorieTracking />
+                        <CalorieTracking protein={this.state.macros.protein} fat={this.state.macros.fat} carbs={this.state.macros.carbs} />
                     </div>
                 </div>
             </div>
