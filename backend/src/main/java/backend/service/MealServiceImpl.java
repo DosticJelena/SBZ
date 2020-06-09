@@ -1,10 +1,13 @@
 package backend.service;
 
 import backend.kie.util.KnowledgeSessionHelper;
+import backend.model.DailyStatus;
 import backend.model.Meal;
 import backend.model.Recipe;
+import backend.model.UserModel;
 import backend.repository.MealRepository;
 import backend.repository.RecipeRepository;
+import backend.repository.UserRepository;
 import backend.service.serviceInterface.MealService;
 import backend.service.serviceInterface.RecipeService;
 import org.kie.api.runtime.KieContainer;
@@ -12,6 +15,7 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -22,6 +26,9 @@ public class MealServiceImpl implements MealService {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Meal findById(long id){
@@ -55,13 +62,25 @@ public class MealServiceImpl implements MealService {
             }
         }
 
-
         kSession.setGlobal("maxTimesEaten", maxTimesEaten);
 
         kSession.getAgenda().getAgendaGroup("eatenMeals").setFocus();
 
         kSession.insert(meal);
         kSession.fireAllRules();
+
+        UserModel user = userRepository.findById(meal.getUser().getId());
+        for(DailyStatus ds : user.getDailyStatuses()){
+            Timestamp tms = new Timestamp(System.currentTimeMillis());
+            if(ds.getDate().equals(tms.toLocalDateTime().toLocalDate())){
+                ds.getMacros().setCalories(meal.getRecipe().getMacros().getCalories()+ds.getMacros().getCalories());
+                ds.getMacros().setCarbs(meal.getRecipe().getMacros().getCarbs()+ds.getMacros().getCarbs());
+                ds.getMacros().setProtein(meal.getRecipe().getMacros().getProtein()+ds.getMacros().getProtein());
+                ds.getMacros().setFat(meal.getRecipe().getMacros().getFat()+ds.getMacros().getFat());
+                userRepository.save(user);
+                break;
+            }
+        }
 
         mealRepository.save(meal);
         if(meal.getRecipe().getTimesEaten() >= maxTimesEaten){
