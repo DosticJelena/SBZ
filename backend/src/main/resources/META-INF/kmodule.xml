@@ -21,4 +21,8 @@
         <ksession name="cep-rules"/>
     </kbase>
 
+    <kbase name="tests" packages="rules">
+        <ksession name="test-session"/>
+    </kbase>
+
 </kmodule>

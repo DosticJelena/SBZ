@@ -32,6 +32,7 @@ end
 
 rule "Updating All Ratings"
     agenda-group "popularRecipe"
+    no-loop
     when
         $recipe: Recipe()
     then

@@ -6,7 +6,7 @@ import backend.model.enumeration.*;
 rule "CalculateUserCalorieThreshold_MANTAIN_female"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.FEMALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.MAINTAIN, gender == Gender.FEMALE)
     then
         $u.setCaloriesThreshold((655 + 9.6 * $weight + 1.8 * $height - 4.7 * $age)*1.5);
 end
@@ -14,7 +14,7 @@ end
 rule "CalculateUserCalorieThreshold_MANTAIN_male"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.MALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.MAINTAIN, gender == Gender.MALE)
     then
         $u.setCaloriesThreshold((66 + 13.7 * $weight + 5 * $height - 6.8 * $age)*1.25);
 end
@@ -24,7 +24,7 @@ end
 rule "CalculateUserCalorieThreshold_GAIN_female"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.FEMALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.GAIN, gender == Gender.FEMALE)
     then
         $u.setCaloriesThreshold((655 + 9.6 * $weight + 1.8 * $height - 4.7 * $age)*1.5 + 200);
 end
@@ -32,7 +32,7 @@ end
 rule "CalculateUserCalorieThreshold_GAIN_male"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.MALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.GAIN, gender == Gender.MALE)
     then
         $u.setCaloriesThreshold((66 + 13.7 * $weight + 5 * $height - 6.8 * $age)*1.25 + 200);
 end
@@ -42,7 +42,7 @@ end
 rule "CalculateUserCalorieThreshold_LOSE_female"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.FEMALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.LOSE, gender == Gender.FEMALE)
     then
         $u.setCaloriesThreshold((655 + 9.6 * $weight + 1.8 * $height - 4.7 * $age)*1.5 - 200);
 end
@@ -50,7 +50,7 @@ end
 rule "CalculateUserCalorieThreshold_LOSE_male"
     agenda-group "calorieCalculator"
     when
-        $u: UserModel($age: age, $weight: weight, $height: height, gender == Gender.MALE)
+        $u: UserModel($age: age, $weight: weight, $height: height, weightGoal == WeightGoal.LOSE, gender == Gender.MALE)
     then
         $u.setCaloriesThreshold((66 + 13.7 * $weight + 5 * $height - 6.8 * $age)*1.25 - 200);
 end
