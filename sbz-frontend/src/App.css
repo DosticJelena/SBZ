@@ -393,3 +393,29 @@ menu {
   margin-left: 20px;
 }
 
+.template {
+  padding: 50px;
+  color: rgb(222, 184, 135);
+}
+
+.template input {
+  width: 100px;
+  background-color: rgb(222, 222, 222, 0.4);
+  border: 0;
+}
+
+.template button {
+  background-color: rgb(86,39,59);
+  color: white;
+  border-radius: 0;
+}
+
+.template h4, .template h3 {
+  font-family: 'Anton', sans-serif;
+}
+
+.preview {
+  padding: 40px;
+  background-color: rgb(222, 222, 222, 0.4);
+}
+

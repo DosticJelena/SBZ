@@ -59,7 +59,9 @@ public class UserController {
     public ResponseEntity<?> getTodaysDailyStatus(@PathVariable("id") long id) {
         for (DailyStatus ds : userService.findById(id).getDailyStatuses()) {
             Timestamp tms = new Timestamp(System.currentTimeMillis());
-            if (ds.getDate().equals(tms.toLocalDateTime().toLocalDate())) {
+            String tmsDate = tms.toLocalDateTime().toLocalDate().toString();
+            String dsDate = ds.getDate().toLocalDate().toString();
+            if (dsDate.equals(tmsDate)) {
                 return ResponseEntity.ok(ds);
             }
         }
